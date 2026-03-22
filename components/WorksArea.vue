@@ -6,6 +6,7 @@
         <h2 class="section-title reveal reveal-delay-1">{{ $t('WorkArea.myProject') }}</h2>
       </div>
 
+      <!-- Filter Tabs -->
       <div class="flex flex-wrap justify-center gap-3 mb-12 reveal reveal-delay-2">
         <button
           v-for="filter in filters"
@@ -20,19 +21,24 @@
         </button>
       </div>
 
+      <!-- Projects Grid -->
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-        <a
+        <div
           v-for="(project, i) in filteredProjects"
           :key="i"
-          :href="project.url"
-          target="_blank"
-          rel="noopener noreferrer"
           class="group glass-hover overflow-hidden reveal"
+          :class="project.url ? 'cursor-pointer' : ''"
+          @click="project.url && window.open(project.url, '_blank')"
         >
-          <div class="relative overflow-hidden aspect-video">
-            <img :src="'/assets/img/works/portfolio/' + project.img" :alt="project.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <!-- Image -->
+          <div class="relative overflow-hidden aspect-video bg-gradient-to-br from-primary/5 to-accent/5">
+            <img
+              :src="'/assets/img/works/portfolio/' + project.img"
+              :alt="project.name"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div class="absolute bottom-4 end-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+            <div v-if="project.url" class="absolute bottom-4 end-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
               <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -40,33 +46,43 @@
               </div>
             </div>
           </div>
+
+          <!-- Info -->
           <div class="p-5">
             <h4 class="font-semibold group-hover:text-primary transition-colors">{{ project.name }}</h4>
-            <span class="inline-block mt-2 text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">{{ project.type }}</span>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">{{ project.company }}</p>
+            <div class="flex flex-wrap gap-1.5 mt-3">
+              <span class="text-xs font-medium text-primary bg-primary/10 px-2.5 py-0.5 rounded-full">{{ project.type }}</span>
+              <span
+                v-for="t in project.tech.split(', ').slice(0, 3)"
+                :key="t"
+                class="text-xs text-[var(--color-text-muted)] bg-[var(--color-surface)] px-2.5 py-0.5 rounded-full"
+              >{{ t }}</span>
+            </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-const { t, tm } = useI18n()
+const { t } = useI18n()
 useReveal()
+
+const { projects } = useResumeData()
 
 const activeFilter = ref('all')
 
 const filters = computed(() => [
-  { label: 'All', value: 'all' },
-  { label: t('Common.frontend'), value: t('Common.frontend') },
-  { label: t('Common.fullStack'), value: t('Common.fullStack') },
-  { label: t('Common.practicing'), value: t('Common.practicing') },
+  { label: t('Filters.all'), value: 'all' },
+  { label: t('Filters.frontend'), value: 'Frontend' },
+  { label: t('Filters.fullStack'), value: 'Full Stack' },
+  { label: t('Filters.creative'), value: 'Creative' },
 ])
 
-const projects = computed(() => tm('WorkArea.projects'))
-
 const filteredProjects = computed(() => {
-  if (activeFilter.value === 'all') return projects.value
-  return projects.value.filter((p) => p.type === activeFilter.value)
+  if (activeFilter.value === 'all') return projects
+  return projects.filter((p) => p.type === activeFilter.value)
 })
 </script>

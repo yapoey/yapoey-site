@@ -6,7 +6,7 @@
         <h2 class="section-title reveal reveal-delay-1">{{ $t('ServiceArea.mainTitle') }}</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div
           v-for="(service, i) in services"
           :key="service.icon"
@@ -28,9 +28,11 @@
 useReveal()
 
 const services = [
-  { icon: '🚀', title: 'ServiceArea.secTitle', desc: 'ServiceArea.subSec' },
+  { icon: '💻', title: 'ServiceArea.firstTitle', desc: 'ServiceArea.subFirst' },
+  { icon: '⚙️', title: 'ServiceArea.secTitle', desc: 'ServiceArea.subSec' },
   { icon: '📱', title: 'ServiceArea.thrTitle', desc: 'ServiceArea.subThr' },
-  { icon: '⚙️', title: 'ServiceArea.fourthTitle', desc: 'ServiceArea.subFourth' },
-  { icon: '📋', title: 'ServiceArea.firstTitle', desc: 'ServiceArea.subFirst' },
+  { icon: '🎨', title: 'ServiceArea.fourthTitle', desc: 'ServiceArea.subFourth' },
+  { icon: '👥', title: 'ServiceArea.fifthTitle', desc: 'ServiceArea.subFifth' },
+  { icon: '☁️', title: 'ServiceArea.sixthTitle', desc: 'ServiceArea.subSixth' },
 ]
 </script>

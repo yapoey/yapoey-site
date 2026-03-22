@@ -1,4 +1,4 @@
-const CAREER_START = 2012
+const CAREER_START = 2019
 
 export function useResumeData() {
   const yearsExp = new Date().getFullYear() - CAREER_START
@@ -6,7 +6,7 @@ export function useResumeData() {
   const bio = {
     name: 'Mohamed Ibrahim',
     alias: 'YapoeY',
-    title: 'Senior Full Stack Developer',
+    title: 'Software Engineer',
     location: 'Seoul, South Korea',
     from: 'Egypt',
     email: 'yapoey@gmail.com',
@@ -14,7 +14,7 @@ export function useResumeData() {
     github: 'github.com/yapoey',
     linkedin: 'linkedin.com/in/yapoey',
     youtube: 'youtube.com/c/yapoey-tech',
-    summary: `Full Stack Developer with ${yearsExp}+ years of experience building web and mobile applications. Based in Seoul, South Korea. Experienced in leading frontend teams, building design systems, and delivering products across healthcare, education, e-commerce, and SaaS platforms. Visited 22+ countries. YouTube creator teaching web development in Arabic.`,
+    summary: `Software Engineer with ${yearsExp}+ years of experience building web and mobile applications. Based in Seoul, South Korea, originally from Egypt. I lead frontend teams, architect design systems, and deliver full-stack products for clients in healthcare, education, e-commerce, and SaaS. Currently Senior Frontend Developer & Team Lead at Sibel Health International, and Product Manager & Technical Lead at YapoeY Bit.`,
   }
 
   const experience = [
@@ -147,7 +147,7 @@ export function useResumeData() {
     backend: ['Node.js', 'Express', 'NestJS', 'PHP', 'Laravel'],
     database: ['MySQL', 'PostgreSQL', 'DynamoDB', 'Redis'],
     cloud: ['AWS (S3, Lambda, EC2)', 'Docker', 'Google Cloud', 'Vercel'],
-    tools: ['Git', 'GitHub', 'Bitbucket', 'Jira', 'Notion', 'Figma', 'Cypress', 'Jest'],
+    tools: ['Git', 'GitHub', 'Bitbucket', 'Jira', 'ClickUp', 'Notion', 'Figma', 'Cypress', 'Jest', 'n8n', 'Claude AI'],
     languages: [
       { name: 'Arabic', level: 'Native', flag: '🇪🇬' },
       { name: 'English', level: 'Fluent', flag: '🇺🇸' },
@@ -180,6 +180,31 @@ export function useResumeData() {
     { name: 'Yemen', flag: '🇾🇪' },
   ]
 
+  const projects = [
+    // Sibel Health
+    { name: 'Sibel Health — Central Monitoring', img: 'kbl.png', type: 'Frontend', tech: 'Vue.js, WebSocket, Docker', company: 'Sibel Health' },
+    { name: 'Sibel Health — Discovery Hub', img: 'himedi.png', type: 'Frontend', tech: 'Vue.js, Cypress, Jest', company: 'Sibel Health' },
+    // YapoeY Bit client projects
+    { name: 'NooN Center', img: 'amf.png', type: 'Full Stack', tech: 'Next.js 15, Express, MySQL', company: 'YapoeY Bit' },
+    { name: 'Russian Whale', img: 'pos.woozza.png', type: 'Full Stack', tech: 'Nuxt 3, Express, MySQL', company: 'YapoeY Bit' },
+    { name: 'bizNavi', img: 'galaxy.png', type: 'Full Stack', tech: 'Flutter, BLoC', company: 'YapoeY Bit' },
+    { name: 'Layun', img: 'holyHome.png', type: 'Full Stack', tech: 'React, Express, PostgreSQL', company: 'YapoeY Bit' },
+    { name: 'Seoul Bird', img: 'woozza.png', type: 'Full Stack', tech: 'Nuxt 4, KakaoMap, AWS S3', company: 'YapoeY Bit' },
+    { name: 'West East Forte', img: 'hvc.en.png', type: 'Frontend', tech: 'Nuxt 3, Tailwind', company: 'YapoeY Bit' },
+    { name: 'cTask', img: 'youthUniversity.png', type: 'Frontend', tech: 'Vue.js 3, PrimeVue', company: 'YapoeY Bit' },
+    // Own products
+    { name: 'ChaiTalk', img: 'yapoey.jpeg', type: 'Creative', tech: 'Flutter, Socket.IO, DynamoDB', company: 'Own Product' },
+    { name: 'Meya-Meya', img: 'oldYapoey.en.png', type: 'Creative', tech: 'Nuxt 4, NestJS, Gemini AI', company: 'Own Product' },
+    // Previous work
+    { name: 'Korean Baseball League', img: 'kbl.png', type: 'Frontend', tech: 'Nuxt.js, Vuex', company: 'b2ggames', url: 'https://kbl-pc.b2ggames.net' },
+    { name: 'Asian Model Festival', img: 'amf.png', type: 'Frontend', tech: 'Nuxt.js, Vuex', company: 'b2ggames', url: 'https://www.amffantasy.com/main' },
+    { name: 'Himedi', img: 'himedi.png', type: 'Frontend', tech: 'Vue.js, Vuex, i18n', company: 'Himedi', url: 'https://himedi.com' },
+    { name: 'GeeksFamily POS', img: 'pos.woozza.png', type: 'Full Stack', tech: 'Vue.js, Laravel, MySQL', company: 'GeeksFamily' },
+    // 3D / Creative
+    { name: 'Galaxy 3D', img: 'galaxy.png', type: 'Creative', tech: 'Three.js, WebGL', url: 'https://s3.eu-west-3.amazonaws.com/yapoey.com/assets/sites/Galaxy/index.html' },
+    { name: 'YapoeY Logo 3D', img: 'yapoey.jpeg', type: 'Creative', tech: 'Three.js, WebGL', url: 'https://wbgl-3d-text-snowy.vercel.app/' },
+  ]
+
   const stats = {
     yearsExp,
     projects: '15+',
@@ -190,5 +215,5 @@ export function useResumeData() {
     commits: '6000+',
   }
 
-  return { bio, experience, education, skills, countries, stats }
+  return { bio, experience, education, skills, projects, countries, stats }
 }

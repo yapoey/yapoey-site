@@ -74,6 +74,7 @@ export default defineNuxtConfig({
   // Runtime config for env vars
   runtimeConfig: {
     geminiApiKey: process.env.GEMINI_API_KEY || '',
+    githubToken: process.env.GITHUB_TOKEN || '',
     appwriteApiKey: process.env.APPWRITE_API_KEY || '',
     public: {
       gaMeasurementId: process.env.GA_MEASUREMENT_ID || '',

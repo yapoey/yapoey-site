@@ -32,13 +32,6 @@
           >
             {{ $t(item.label) }}
           </a>
-          <NuxtLink
-            to="/blog"
-            class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
-          >
-            {{ $t('Header.blog') }}
-          </NuxtLink>
-
           <!-- CLI Mode -->
           <NuxtLink
             to="/cli"
@@ -128,13 +121,6 @@
         >
           {{ $t(item.label) }}
         </a>
-        <NuxtLink
-          to="/blog"
-          class="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors"
-          @click="mobileMenuOpen = false"
-        >
-          {{ $t('Header.blog') }}
-        </NuxtLink>
         <NuxtLink
           to="/cli"
           class="block px-3 py-2 rounded-lg text-sm font-mono font-medium text-green-400 hover:bg-green-500/10 transition-colors"

@@ -6,7 +6,7 @@ const ASCII_ART = `
     ██║   ██║  ██║██║     ╚██████╔╝███████╗   ██║
     ╚═╝   ╚═╝  ╚═╝╚═╝      ╚═════╝ ╚══════╝   ╚═╝`
 
-const CAREER_START = 2012
+const CAREER_START = 2019
 const YEARS_EXP = new Date().getFullYear() - CAREER_START
 
 const KNOWN_COMMANDS = [

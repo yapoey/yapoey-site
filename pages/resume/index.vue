@@ -7,6 +7,44 @@
           {{ $t('ResumePage.backToPortfolio') }}
         </NuxtLink>
         <div class="flex items-center gap-3">
+          <!-- Language switcher -->
+          <div class="relative" ref="langDropdown">
+            <button
+              class="px-3 py-1.5 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors cursor-pointer"
+              @click="showLangMenu = !showLangMenu"
+            >
+              {{ currentLocaleName }}
+            </button>
+            <div
+              v-show="showLangMenu"
+              class="absolute end-0 mt-2 w-32 glass rounded-lg shadow-lg py-1 z-50"
+            >
+              <button
+                v-for="loc in availableLocales"
+                :key="loc.code"
+                class="block w-full text-start px-4 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
+                @click="switchLocale(loc.code)"
+              >
+                {{ loc.name }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Dark mode toggle -->
+          <button
+            class="p-2 rounded-lg hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
+            aria-label="Toggle dark mode"
+            @click="themeStore.toggleColorMode()"
+          >
+            <svg v-if="themeStore.isDark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+            </svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+            </svg>
+          </button>
+
+          <!-- Print button -->
           <NuxtLink
             to="/resume/print"
             target="_blank"
@@ -133,7 +171,7 @@
               <div v-for="lang in items" :key="lang.name" class="flex items-center gap-3">
                 <span class="text-lg">{{ lang.flag }}</span>
                 <span class="font-medium">{{ lang.name }}</span>
-                <span class="text-sm text-[var(--color-text-muted)]">— {{ lang.level }}</span>
+                <span class="text-sm text-[var(--color-text-muted)]">{{ lang.level }}</span>
               </div>
             </div>
           </div>
@@ -166,7 +204,36 @@
 <script setup>
 definePageMeta({ layout: false })
 
+const { locale, setLocale } = useI18n()
+const themeStore = useThemeStore()
 const { bio, experience, education, skills, countries, stats } = useResumeData()
+
+const showLangMenu = ref(false)
+const langDropdown = ref(null)
+
+const availableLocales = [
+  { code: 'en', name: 'English' },
+  { code: 'ko', name: '한국어' },
+  { code: 'ar', name: 'العربية' },
+]
+
+const currentLocaleName = computed(() => {
+  return availableLocales.find(l => l.code === locale.value)?.name || 'English'
+})
+
+async function switchLocale(code) {
+  await setLocale(code)
+  showLangMenu.value = false
+}
+
+function handleClickOutside(e) {
+  if (langDropdown.value && !langDropdown.value.contains(e.target)) {
+    showLangMenu.value = false
+  }
+}
+
+onMounted(() => document.addEventListener('click', handleClickOutside))
+onUnmounted(() => document.removeEventListener('click', handleClickOutside))
 
 const displayStats = computed(() => ({
   years: { val: `${stats.yearsExp}+`, label: 'Years Exp' },
@@ -177,14 +244,16 @@ const displayStats = computed(() => ({
   degrees: { val: stats.degrees, label: 'Degrees' },
 }))
 
+const { t: $t } = useI18n()
+
 function formatCategory(key) {
   const map = {
-    frontend: 'Frontend',
-    backend: 'Backend',
-    database: 'Database',
-    cloud: 'Cloud & DevOps',
-    tools: 'Tools',
-    languages: 'Languages',
+    frontend: $t('ResumeArea.frontend'),
+    backend: $t('ResumeArea.backend'),
+    database: $t('ResumeArea.database'),
+    cloud: $t('ResumeArea.cloudDevops'),
+    tools: $t('ResumeArea.toolsTesting'),
+    languages: $t('ResumeArea.languages'),
   }
   return map[key] || key
 }

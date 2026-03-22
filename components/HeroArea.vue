@@ -67,20 +67,23 @@
 const { t } = useI18n()
 useReveal()
 
-const CAREER_START_YEAR = 2012
+const CAREER_START_YEAR = 2019
 const yearsExp = computed(() => new Date().getFullYear() - CAREER_START_YEAR)
 
 const stats = computed(() => [
   { value: `${yearsExp.value}+`, labelKey: 'HeroArea.yearsExp' },
   { value: '15+', labelKey: 'HeroArea.projects' },
-  { value: '6000+', labelKey: 'HeroArea.commits' },
+  { value: '6k+', labelKey: 'HeroArea.commits' },
   { value: '22+', labelKey: 'HeroArea.countries' },
 ])
 
 const strings = computed(() => [
-  t('HeroArea.freelancer'),
   t('HeroArea.frontend'),
   t('HeroArea.backend'),
+  t('HeroArea.fullstack'),
+  t('HeroArea.pm'),
+  t('HeroArea.aiAutomation'),
+  t('HeroArea.productEng'),
 ])
 
 const currentText = ref('')

@@ -27,7 +27,7 @@
             <div class="glass p-6">
               <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">{{ item.year }}</span>
               <h4 class="text-lg font-semibold mt-3">{{ item.degree }}</h4>
-              <p class="text-[var(--color-text-muted)] mt-1">{{ item.name }}</p>
+              <p class="text-[var(--color-text-muted)] mt-1">{{ item.school }} · {{ item.location }}</p>
             </div>
           </div>
         </div>
@@ -45,17 +45,26 @@
                   <div class="flex flex-wrap items-center gap-2 mt-2 text-sm text-[var(--color-text-muted)]">
                     <span class="font-medium text-[var(--color-text)]">{{ job.company }}</span>
                     <span>&middot;</span>
-                    <span>{{ job.employmentType }}</span>
+                    <span>{{ job.type }}</span>
                     <span>&middot;</span>
-                    <span>{{ job.country }}</span>
+                    <span>{{ job.location }}</span>
                   </div>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[var(--color-text-muted)] transition-transform duration-200 flex-shrink-0 mt-2" :class="expandedJobs.has(i) ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
               </div>
-              <div v-show="expandedJobs.has(i)" class="mt-4 pt-4 border-t border-[var(--color-border)] text-sm text-[var(--color-text-muted)] whitespace-pre-line leading-relaxed">
-                {{ job.des }}
+              <div v-show="expandedJobs.has(i)" class="mt-4 pt-4 border-t border-[var(--color-border)] text-sm text-[var(--color-text-muted)] leading-relaxed">
+                <ul class="space-y-1.5">
+                  <li v-for="(h, j) in job.highlights" :key="j" class="flex gap-2">
+                    <span v-if="h.startsWith('→')" class="text-primary flex-shrink-0">→</span>
+                    <span v-else class="text-primary/60 flex-shrink-0">▸</span>
+                    <span>{{ h.startsWith('→') ? h.slice(2) : h }}</span>
+                  </li>
+                </ul>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span v-for="t in job.tech.split(', ')" :key="t" class="px-2 py-0.5 text-xs rounded-md bg-primary/10 text-primary">{{ t }}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -63,27 +72,37 @@
       </div>
 
       <div v-show="activeTab === 'skills'">
-        <div class="max-w-4xl mx-auto space-y-12">
-          <div class="reveal">
-            <h3 class="text-lg font-semibold mb-6">{{ $t('ResumeArea.WebDevelop') }}</h3>
-            <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-5">
-              <div v-for="icon in webDevelopmentIcons" :key="icon.id" class="flex flex-col items-center text-center gap-2 group">
-                <div class="w-16 h-16 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center group-hover:border-primary group-hover:shadow-lg group-hover:shadow-primary/10 transition-all duration-200">
-                  <img v-if="icon.url" :src="'/assets/img/works/webdevelop/' + icon.url" :alt="icon.name" class="w-8 h-8 object-contain" />
-                </div>
-                <span class="text-xs text-[var(--color-text-muted)] group-hover:text-[var(--color-text)] transition-colors">{{ icon.name }}</span>
-              </div>
+        <div class="max-w-4xl mx-auto space-y-10">
+          <div
+            v-for="(category, i) in skillCategories"
+            :key="category.name"
+            class="reveal"
+            :class="i > 0 ? 'reveal-delay-' + Math.min(i, 4) : ''"
+          >
+            <h3 class="text-lg font-semibold mb-4">{{ category.label }}</h3>
+            <div class="flex flex-wrap gap-2">
+              <span
+                v-for="skill in category.items"
+                :key="skill"
+                class="px-4 py-2 text-sm rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-primary hover:shadow-lg hover:shadow-primary/10 transition-all duration-200"
+              >{{ skill }}</span>
             </div>
           </div>
 
-          <div class="reveal reveal-delay-1">
-            <h3 class="text-lg font-semibold mb-6">{{ $t('ResumeArea.WebHosting') }}</h3>
-            <div class="grid grid-cols-4 sm:grid-cols-6 gap-5">
-              <div v-for="icon in hostingManagement" :key="icon.id" class="flex flex-col items-center text-center gap-2 group">
-                <div class="w-16 h-16 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center group-hover:border-primary group-hover:shadow-lg group-hover:shadow-primary/10 transition-all duration-200">
-                  <img v-if="icon.url" :src="'/assets/img/works/management/' + icon.url" :alt="icon.name" class="w-8 h-8 object-contain" />
+          <!-- Languages -->
+          <div class="reveal reveal-delay-4">
+            <h3 class="text-lg font-semibold mb-4">{{ $t('ResumeArea.languages') }}</h3>
+            <div class="flex flex-wrap gap-4">
+              <div
+                v-for="lang in skills.languages"
+                :key="lang.name"
+                class="flex items-center gap-3 px-5 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]"
+              >
+                <span class="text-2xl">{{ lang.flag }}</span>
+                <div>
+                  <div class="font-medium">{{ lang.name }}</div>
+                  <div class="text-xs text-[var(--color-text-muted)]">{{ lang.level }}</div>
                 </div>
-                <span class="text-xs text-[var(--color-text-muted)] group-hover:text-[var(--color-text)] transition-colors">{{ icon.name }}</span>
               </div>
             </div>
           </div>
@@ -94,8 +113,19 @@
 </template>
 
 <script setup>
-const { tm } = useI18n()
 useReveal()
+
+const { education: educations, experience: experiences, skills } = useResumeData()
+
+const { t } = useI18n()
+
+const skillCategories = computed(() => [
+  { name: 'frontend', label: t('ResumeArea.frontend'), items: skills.frontend },
+  { name: 'backend', label: t('ResumeArea.backend'), items: skills.backend },
+  { name: 'database', label: t('ResumeArea.database'), items: skills.database },
+  { name: 'cloud', label: t('ResumeArea.cloudDevops'), items: skills.cloud },
+  { name: 'tools', label: t('ResumeArea.toolsTesting'), items: skills.tools },
+])
 
 const activeTab = ref('education')
 const expandedJobs = ref(new Set())
@@ -106,9 +136,6 @@ const tabs = [
   { key: 'skills', label: 'ResumeArea.Skills' },
 ]
 
-const educations = computed(() => tm('ResumeArea.educations'))
-const experiences = computed(() => tm('ResumeArea.experiences'))
-
 function toggleExpand(i) {
   const s = new Set(expandedJobs.value)
   if (s.has(i)) s.delete(i)
@@ -116,26 +143,4 @@ function toggleExpand(i) {
   expandedJobs.value = s
 }
 
-const webDevelopmentIcons = [
-  { id: 1, url: 'bootstrap.png', name: 'Bootstrap' },
-  { id: 2, url: 'css3.png', name: 'CSS' },
-  { id: 3, url: 'html5.png', name: 'HTML' },
-  { id: 4, url: 'javascript.png', name: 'Javascript' },
-  { id: 5, url: 'jquery.png', name: 'jQuery' },
-  { id: 6, url: 'laravel.png', name: 'Laravel' },
-  { id: 7, url: 'nodejs.png', name: 'Express.js' },
-  { id: 8, url: 'vue.png', name: 'Vue.js' },
-  { id: 9, url: 'sass.png', name: 'SASS' },
-  { id: 10, url: 'php.png', name: 'PHP' },
-  { id: 11, url: 'webpack.png', name: 'Webpack' },
-]
-
-const hostingManagement = [
-  { id: 1, url: 'aws.png', name: 'AWS' },
-  { id: 2, url: 'googleCloud.png', name: 'Google Cloud' },
-  { id: 3, url: 'docker.png', name: 'Docker' },
-  { id: 4, url: 'github.png', name: 'GitHub' },
-  { id: 5, url: 'bitbucket.png', name: 'Bitbucket' },
-  { id: 6, url: 'jira.png', name: 'Jira' },
-]
 </script>

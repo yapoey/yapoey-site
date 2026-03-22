@@ -28,7 +28,7 @@
       <div v-for="(job, i) in experience" :key="i" class="entry">
         <div class="entry-header">
           <div>
-            <strong>{{ job.title }}</strong> — {{ job.company }}
+            <strong>{{ job.title }}</strong> ·{{ job.company }}
           </div>
           <div class="date">{{ job.duration }}</div>
         </div>
@@ -47,7 +47,7 @@
       <h2>Education</h2>
       <div v-for="(edu, i) in education" :key="i" class="entry">
         <div class="entry-header">
-          <div><strong>{{ edu.degree }}</strong> — {{ edu.school }}</div>
+          <div><strong>{{ edu.degree }}</strong> ·{{ edu.school }}</div>
           <div class="date">{{ edu.year }}</div>
         </div>
         <div class="meta">{{ edu.location }}</div>

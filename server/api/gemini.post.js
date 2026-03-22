@@ -19,15 +19,77 @@ If asked something completely unrelated to YapoeY, politely redirect.
 Add a touch of humor where appropriate.
 Never make up information you don't have — say "I'm not sure about that" instead.`
 
+// --- Rate Limiting ---
+// Per-IP: 10 requests per 5 minutes
+// Global: 100 requests per hour
+const RATE_LIMIT_PER_IP = 10
+const RATE_LIMIT_WINDOW_MS = 5 * 60 * 1000 // 5 minutes
+const GLOBAL_LIMIT = 100
+const GLOBAL_WINDOW_MS = 60 * 60 * 1000 // 1 hour
+
+const ipRequests = new Map() // ip -> { count, resetAt }
+let globalCount = 0
+let globalResetAt = Date.now() + GLOBAL_WINDOW_MS
+
+function checkRateLimit(ip) {
+  const now = Date.now()
+
+  // Global limit
+  if (now > globalResetAt) {
+    globalCount = 0
+    globalResetAt = now + GLOBAL_WINDOW_MS
+  }
+  if (globalCount >= GLOBAL_LIMIT) {
+    return { limited: true, message: 'AI is taking a break. Too many requests globally. Try again later.' }
+  }
+
+  // Per-IP limit
+  const entry = ipRequests.get(ip)
+  if (!entry || now > entry.resetAt) {
+    ipRequests.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+  } else {
+    if (entry.count >= RATE_LIMIT_PER_IP) {
+      const waitSec = Math.ceil((entry.resetAt - now) / 1000)
+      return { limited: true, message: `Slow down! You've used ${RATE_LIMIT_PER_IP} AI requests. Try again in ${waitSec}s.` }
+    }
+    entry.count++
+  }
+
+  globalCount++
+  return { limited: false }
+}
+
+// Clean up old IP entries every 10 minutes
+setInterval(() => {
+  const now = Date.now()
+  for (const [ip, entry] of ipRequests) {
+    if (now > entry.resetAt) ipRequests.delete(ip)
+  }
+}, 10 * 60 * 1000)
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const apiKey = config.geminiApiKey
+  const apiKey = config.geminiApiKey || process.env.GEMINI_API_KEY || process.env.NUXT_GEMINI_API_KEY
 
   if (!apiKey) {
     throw createError({
       statusCode: 503,
       message: 'Gemini API key not configured',
     })
+  }
+
+  // Get client IP
+  const ip = getRequestHeader(event, 'x-forwarded-for')?.split(',')[0]?.trim()
+    || getRequestHeader(event, 'x-real-ip')
+    || event.node.req.socket?.remoteAddress
+    || 'unknown'
+
+  // Check rate limit (skip in development)
+  if (process.env.NODE_ENV === 'production') {
+    const limit = checkRateLimit(ip)
+    if (limit.limited) {
+      return { answer: limit.message }
+    }
   }
 
   const body = await readBody(event)
@@ -40,34 +102,44 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  // Cap question length (allow longer for internal AI commands)
+  const safeQuestion = question.slice(0, 3000)
+
   try {
     const response = await $fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         body: {
           contents: [
             {
               role: 'user',
-              parts: [{ text: `${SYSTEM_PROMPT}\n\nUser question: ${question}` }],
+              parts: [{ text: `${SYSTEM_PROMPT}\n\nUser question: ${safeQuestion}` }],
             },
           ],
           generationConfig: {
-            maxOutputTokens: 500,
+            maxOutputTokens: 2000,
             temperature: 0.7,
+            thinkingConfig: {
+              thinkingBudget: 0,
+            },
           },
         },
       }
     )
 
-    const answer = response?.candidates?.[0]?.content?.parts?.[0]?.text
-      || "Sorry, I couldn't generate a response."
+    const parts = response?.candidates?.[0]?.content?.parts || []
+    const answer = parts
+      .filter(p => p.text)
+      .map(p => p.text)
+      .join('\n') || "Sorry, I couldn't generate a response."
 
     return { answer }
   } catch (err) {
+    console.error('[Gemini] Error:', err?.data || err?.message || err)
     throw createError({
       statusCode: 502,
-      message: 'Failed to reach Gemini API',
+      message: err?.data?.error?.message || 'Failed to reach Gemini API',
     })
   }
 })

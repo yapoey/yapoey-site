@@ -39,6 +39,14 @@
             {{ $t('Header.blog') }}
           </NuxtLink>
 
+          <!-- CLI Mode -->
+          <NuxtLink
+            to="/cli"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-green-400 bg-green-500/10 border border-green-500/20 hover:border-green-400 hover:bg-green-500/15 transition-all"
+          >
+            <span class="text-green-500">&gt;_</span> CLI
+          </NuxtLink>
+
           <!-- Language Switcher -->
           <div class="relative" ref="langDropdown">
             <button
@@ -126,6 +134,13 @@
           @click="mobileMenuOpen = false"
         >
           {{ $t('Header.blog') }}
+        </NuxtLink>
+        <NuxtLink
+          to="/cli"
+          class="block px-3 py-2 rounded-lg text-sm font-mono font-medium text-green-400 hover:bg-green-500/10 transition-colors"
+          @click="mobileMenuOpen = false"
+        >
+          &gt;_ CLI Mode
         </NuxtLink>
         <div class="border-t border-[var(--color-border)] pt-2">
           <button

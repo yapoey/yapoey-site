@@ -77,11 +77,16 @@
 const { t } = useI18n()
 useReveal()
 
-const stats = [
-  { value: '10+', label: 'Years Exp' },
+const CAREER_START_YEAR = 2012
+
+const yearsExp = computed(() => new Date().getFullYear() - CAREER_START_YEAR)
+
+const stats = computed(() => [
+  { value: `${yearsExp.value}+`, label: 'Years Exp' },
   { value: '15+', label: 'Projects' },
+  { value: '32', label: 'Countries Visited' },
   { value: '3', label: 'Languages' },
-]
+])
 
 const strings = computed(() => [
   t('HeroArea.freelancer'),

@@ -105,41 +105,43 @@ Phase 1 (Foundation) → Phase 2 (UI) → Phase 3 (Intro + CLI) → Phase 4 (Res
 
 ---
 
-## Phase 3: Intro Page + CLI Mode ⬜
+## Phase 3: Intro Page + CLI Mode ✅
 **Goal:** The signature feature — entry page with CLI/GUI choice + Gemini AI terminal.
 
-### 3A: Entry Page (`/`) ⬜
-- [ ] New `pages/index.vue` — full screen intro
-- [ ] Typewriter: "Hi, I'm YapoeY"
-- [ ] Subtitle: "Full Stack Developer · Seoul, Korea"
-- [ ] Two buttons: CLI (terminal style) / GUI (glassmorphism)
-- [ ] Keyboard shortcuts (1/2)
-- [ ] Returning visitor cookie → auto-redirect to preferred mode
-- [ ] Move current portfolio to `pages/gui.vue`
+### 3A: Entry Page (`/`) ✅
+- [x] New `pages/index.vue` — full screen dark intro with gradient blobs
+- [x] Typewriter: "Hi, I'm YapoeY" with animated reveal
+- [x] Subtitle: "Full Stack Developer · Seoul, Korea" (fade in)
+- [x] Two buttons: CLI (terminal/green) / GUI (glassmorphism/gradient)
+- [x] Keyboard shortcuts (1 = CLI, 2 = GUI)
+- [x] Returning visitor localStorage → auto-redirect to preferred mode
+- [x] Current portfolio moved to `pages/gui.vue`
 
-### 3B: CLI Terminal UI (`/cli`) ⬜
-- [ ] `pages/cli.vue` + CLI components (Terminal, CommandInput, OutputLine, SuggestedCommands)
-- [ ] ASCII art header
-- [ ] Blinking cursor, keyboard input
-- [ ] Command history (arrow up/down)
-- [ ] Tab autocomplete
-- [ ] Built-in commands: help, about, resume, projects, skills, contact, blog, clear, gui, exit, lang
+### 3B: CLI Terminal UI (`/cli`) ✅
+- [x] `pages/cli.vue` — full terminal page with top bar
+- [x] `composables/useTerminal.js` — all terminal logic
+- [x] ASCII art header on init
+- [x] Blinking cursor, keyboard input
+- [x] Command history (arrow up/down)
+- [x] Tab autocomplete from known commands
+- [x] Built-in commands: help, about, resume, projects, skills, contact, blog, clear, gui, exit, lang
+- [x] Color-coded output (green=cmd, gray=info, red=error, yellow=AI, purple=ASCII)
 
-### 3C: Gemini AI Integration ⬜
-- [ ] Create `server/api/gemini.post.ts` — proxy to Gemini API
-- [ ] System prompt with YapoeY context
-- [ ] `ask [question]` command → Gemini
-- [ ] Unrecognized commands → fall through to Gemini
-- [ ] Typewriter effect for AI responses
-- [ ] Rate limiting (basic, server-side)
-- [ ] Suggested prompts shown at start
+### 3C: Gemini AI Integration ✅
+- [x] `server/api/gemini.post.js` — proxy to Gemini 2.0 Flash API
+- [x] System prompt with full YapoeY context
+- [x] `ask [question]` command → Gemini
+- [x] Unrecognized commands → fall through to Gemini
+- [x] Loading indicator while waiting
+- [x] Graceful error when API key not set
+- [x] Suggested prompts shown in welcome message
 
-### 3D: Mobile CLI ⬜
-- [ ] Virtual keyboard support
-- [ ] Scrollable terminal
-- [ ] Tap-to-run command chips
+### 3D: Mobile CLI ✅
+- [x] Input focuses on tap anywhere in terminal
+- [x] Scrollable terminal output (auto-scroll on new output)
+- [x] Tap-to-run command chips (mobile only, hidden on desktop)
 
-**Effort:** High
+**Effort:** High — COMPLETED
 
 ---
 

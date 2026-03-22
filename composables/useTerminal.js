@@ -31,39 +31,51 @@ const PROJECTS = [
 ]
 
 const EXPERIENCE_DATA = `
-b2ggames (2021/12 — Present) Frontend Developer, Full-time, Seoul Korea
-- Built Asian Model Festival event website from scratch
-- Built Korean Baseball League fantasy gaming platform
-- Daily maintenance, debugging, cross-browser compatibility
+Sibel Health International (2022/10 — Present) Senior Frontend Developer & Frontend Team Lead, Full-time, Seoul Korea & US
+- Lead frontend team across Korea and US offices
+- Built Discovery Hub — migrated entire React codebase to Vue.js from scratch (256 commits)
+- Created Sibel Health Design System (atomic design), extracted as npm workspace package
+- Built Central Monitoring (Tucana) — real-time 64-patient monitoring via WebSocket (79 commits)
+- Traveled to US 2024 to fix critical Maternal project issues — helped achieve FDA approval
+- Created mock server, E2E testing (Cypress), unit testing (Jest), GitHub Actions CI
+- Tech: Vue.js, Next.js, TypeScript, SCSS, WebSocket, Docker, Cypress, Jest, Monorepo
+
+YapoeY Bit (2022/10 — Present) Product Manager & Technical Lead, Studio, Seoul Korea
+- Founded development studio, leading frontend/backend/mobile teams
+- Delivered 10+ products for clients in Korea, Egypt, Qatar, Japan
+- Key projects: NooN Center (education platform, 576 commits), Russian Whale (compound management, 547 commits), bizNavi (enterprise mobile app, 816 commits), ChaiTalk (social app, 193 commits), Layun (CMS, 285 commits), Seoul Bird (bird watching platform), Meya-Meya (AI restaurant ordering), cTask, West East Forte
+- Total: ~3000 commits across all studio projects
+- Tech: Vue, Nuxt, Next.js, React, Flutter, Node.js, Express, NestJS, MySQL, PostgreSQL, DynamoDB, Redis, AWS, Docker
+
+b2ggames (2021/12 — 2022/10) Frontend Developer, Full-time, Seoul Korea
+- Built AMF event website and Korean Baseball League gaming platform
 - Tech: Nuxt.js, Vuex, SASS, Jira, Bitbucket
 
 Himedi (2019/12 — 2021/11) Frontend Developer, Full-time, Seoul Korea
-- Built medical platform connecting Korean hospitals with international patients from scratch
-- Implemented 3 languages (English, Arabic, Russian)
+- Built medical tourism platform from scratch, 3 languages (EN/AR/RU) with RTL
 - Tech: Vue.js, Vuex, Bootstrap 4, Webpack, Axios, i18n, RTLCSS
 
 GeeksFamily (2019/02 — 2019/11) Full Stack Developer, Full-time, Seoul Korea
-- Built POS system, delivery sharing system, food ordering app
-- Tech: Vue.js, Laravel, MySQL, Chart.js, Facebook/Google Analytics APIs
+- Built POS system, delivery sharing, food ordering app
+- Tech: Vue.js, Laravel, MySQL, Chart.js
 
 Bio & Pure (2016/05 — 2018/08) Full Stack Developer, Freelance, Qatar
 - Built cosmetics e-commerce from scratch
 - Tech: Laravel, Bootstrap 4, MySQL
-
-+ Early career: Egyptian construction company website, Korean government office intern, Korean startup translator, Hanyang University project
 `
 
 const SKILLS_DATA = `
-Frontend: Vue.js, Nuxt.js, JavaScript ES6+, HTML5, CSS3, SASS, Bootstrap, Tailwind CSS, Webpack, Axios, Vuex
-Backend: PHP, Laravel, Node.js, Express.js, REST APIs
-Database: MySQL, PostgreSQL
-Cloud/DevOps: AWS (S3, Lambda), Google Cloud, Docker
+Frontend: Vue.js, Nuxt.js, React, Next.js, Flutter, TypeScript, JavaScript ES6+, HTML5, CSS3, SASS, Tailwind CSS, Bootstrap
+Backend: Node.js, Express, NestJS, PHP, Laravel
+Database: MySQL, PostgreSQL, DynamoDB, Redis
+Cloud/DevOps: AWS (S3, Lambda, EC2), Docker, Google Cloud, Vercel
+Testing: Cypress (E2E), Jest (unit), GitHub Actions CI
 Tools: Git, GitHub, Bitbucket, Jira, Notion, Figma
 Languages: Arabic (native), English (fluent), Korean (conversational)
 `
 
 const FUN_FACTS = [
-  "I've visited 32 countries and counting!",
+  "I've visited 22+ countries and counting!",
   "I started my career in Egypt building construction company websites.",
   "I met my first Korean friend during the Arab Spring in 2011 — that's what brought me to Korea.",
   "I have two bachelor's degrees: Accounting and Computer Science.",
@@ -443,17 +455,14 @@ Group them by type (Professional, Creative/Personal). Show all projects.`
   }
 
   function runStats() {
-    addLine('┌─── Quick Stats ─────────────────────────────┐', 'highlight')
-    addBlank()
-    addLine(`  ${YEARS_EXP}+  Years of experience`, 'info')
-    addLine('  11   Projects shipped', 'info')
-    addLine('  32   Countries visited', 'info')
-    addLine('   3   Languages spoken', 'info')
-    addLine('   5   Companies worked at', 'info')
-    addLine('   2   Bachelor degrees', 'info')
-    addLine('   1   YouTube channel', 'info')
-    addBlank()
-    addLine('└──────────────────────────────────────────────┘', 'highlight')
+    addLine(`  ${YEARS_EXP}+   Years of experience`, 'info')
+    addLine('  15+   Projects shipped', 'info')
+    addLine('  6000+ Commits', 'info')
+    addLine('  22+   Countries visited', 'info')
+    addLine('   3    Languages spoken', 'info')
+    addLine('   6    Companies worked at', 'info')
+    addLine('   2    Bachelor degrees', 'info')
+    addLine('   1    YouTube channel', 'info')
   }
 
   function runNeofetch() {

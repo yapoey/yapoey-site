@@ -145,25 +145,27 @@ Phase 1 (Foundation) → Phase 2 (UI) → Phase 3 (Intro + CLI) → Phase 4 (Res
 
 ---
 
-## Phase 4: Resume + Timeline ⬜
-**Goal:** Updated resume content + life story timeline.
-**Depends on:** User filling `CONTENT-TASKS.md` (Tasks 1, 2, 3, 6, 7, 8)
+## Phase 4: Resume + Content Update ✅
+**Goal:** Updated resume content, interactive resume page, CLI and portfolio data refresh.
 
-### 4A: Resume Page (`/resume`) ⬜
-- [ ] Interactive HTML resume page
-- [ ] Two versions: Standard (ATS) + Fun (detailed)
-- [ ] Tab or toggle to switch between versions
-- [ ] PDF export from browser (or pre-generated)
-- [ ] Content from `CONTENT-TASKS.md`
+### 4A: Resume Data & Page ✅
+- [x] `composables/useResumeData.js` — centralized resume data (bio, experience, education, skills, countries, stats)
+- [x] `/resume` page — interactive HTML resume with timeline, skill tags, country badges, stats grid, PDF download
+- [x] Full experience: Sibel Health, YapoeY Bit (10 projects), b2ggames, Himedi, GeeksFamily, Bio & Pure
+- [x] YapoeY Bit framed as "Product Manager & Technical Lead" (studio, not CEO)
+- [x] 22+ countries listed with flags and notes
+- [x] Skills categorized: Frontend, Backend, Database, Cloud, Tools, Languages
 
-### 4B: Timeline Page (`/timeline`) ⬜
-- [ ] Vertical scrolling timeline component
-- [ ] Entries: year, location, flag, description, optional photo
-- [ ] Event types: career, travel, education, personal, achievement
-- [ ] Content from `CONTENT-TASKS.md`
-- [ ] Smooth scroll animations
+### 4B: CLI & Portfolio Data Refresh ✅
+- [x] CLI terminal updated with accurate resume data (experience, skills, stats)
+- [x] Gemini system prompt updated with full YapoeY context
+- [x] HeroArea stats updated (14+ years, 15+ projects, 6000+ commits, 22+ countries)
+- [x] Fun facts updated
 
-**Effort:** Medium
+### 4C: Timeline Page ⬜ (deferred)
+- [ ] Vertical scrolling timeline component — deferred to later, resume page covers the story for now
+
+**Effort:** Medium — COMPLETED (timeline deferred)
 
 ---
 

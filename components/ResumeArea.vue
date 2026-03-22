@@ -1,17 +1,20 @@
 <template>
   <section id="resume" class="bg-[var(--color-bg-2)]">
     <div class="section-wrapper">
-      <h2 class="section-title mb-12">{{ $t('ResumeArea.resume') }}</h2>
+      <div class="text-center mb-16">
+        <span class="section-label reveal">{{ $t('ResumeArea.resume') }}</span>
+        <h2 class="section-title reveal reveal-delay-1">Education & Experience</h2>
+      </div>
 
       <!-- Tabs -->
-      <div class="flex gap-4 mb-10 border-b border-[var(--color-border)]">
+      <div class="flex justify-center gap-2 mb-12 reveal reveal-delay-2">
         <button
           v-for="tab in tabs"
           :key="tab.key"
-          class="pb-3 px-2 text-sm font-medium transition-colors relative cursor-pointer"
+          class="px-6 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer"
           :class="activeTab === tab.key
-            ? 'text-primary border-b-2 border-primary'
-            : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'"
+            ? 'bg-primary text-white shadow-lg shadow-primary/25'
+            : 'bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-text)]'"
           @click="activeTab = tab.key"
         >
           {{ $t(tab.label) }}
@@ -19,53 +22,64 @@
       </div>
 
       <!-- Education -->
-      <div v-show="activeTab === 'education'">
-        <div class="space-y-6">
+      <div v-show="activeTab === 'education'" class="max-w-3xl mx-auto">
+        <div class="relative pl-8 border-l-2 border-primary/20 space-y-8">
           <div
             v-for="(item, i) in educations"
             :key="i"
-            class="glass p-6 rounded-xl"
+            class="relative reveal"
           >
-            <span class="text-sm text-primary font-medium">{{ item.year }}</span>
-            <h4 class="text-lg font-semibold mt-1">{{ item.degree }}</h4>
-            <span class="text-[var(--color-text-muted)]">{{ item.name }}</span>
+            <!-- Timeline dot -->
+            <div class="absolute -left-[calc(2rem+5px)] w-3 h-3 rounded-full bg-primary ring-4 ring-[var(--color-bg-2)]" />
+            <div class="glass p-6">
+              <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">{{ item.year }}</span>
+              <h4 class="text-lg font-semibold mt-3">{{ item.degree }}</h4>
+              <p class="text-[var(--color-text-muted)] mt-1">{{ item.name }}</p>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Experience -->
-      <div v-show="activeTab === 'experience'">
-        <div class="space-y-6">
+      <div v-show="activeTab === 'experience'" class="max-w-3xl mx-auto">
+        <div class="relative pl-8 border-l-2 border-primary/20 space-y-6">
           <div
             v-for="(job, i) in experiences"
             :key="i"
-            class="glass p-6 rounded-xl cursor-pointer"
+            class="relative reveal cursor-pointer"
             @click="toggleExpand(i)"
           >
-            <div class="flex items-start justify-between">
-              <div>
-                <span class="text-sm text-primary font-medium">{{ job.duration }}</span>
-                <h4 class="text-lg font-semibold mt-1">{{ job.title }}</h4>
-                <div class="flex flex-wrap gap-2 mt-1">
-                  <span class="text-sm text-[var(--color-text-muted)]">{{ job.company }}</span>
-                  <span class="text-sm text-[var(--color-text-muted)]">&middot;</span>
-                  <span class="text-sm text-[var(--color-text-muted)]">{{ job.employmentType }}</span>
-                  <span class="text-sm text-[var(--color-text-muted)]">&middot;</span>
-                  <span class="text-sm text-[var(--color-text-muted)]">{{ job.country }}</span>
+            <!-- Timeline dot -->
+            <div class="absolute -left-[calc(2rem+5px)] w-3 h-3 rounded-full bg-primary ring-4 ring-[var(--color-bg-2)]" />
+            <div class="glass-hover p-6">
+              <div class="flex items-start justify-between gap-4">
+                <div class="flex-1">
+                  <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">{{ job.duration }}</span>
+                  <h4 class="text-lg font-semibold mt-3">{{ job.title }}</h4>
+                  <div class="flex flex-wrap items-center gap-2 mt-2 text-sm text-[var(--color-text-muted)]">
+                    <span class="font-medium text-[var(--color-text)]">{{ job.company }}</span>
+                    <span>&middot;</span>
+                    <span>{{ job.employmentType }}</span>
+                    <span>&middot;</span>
+                    <span>{{ job.country }}</span>
+                  </div>
                 </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-[var(--color-text-muted)] transition-transform duration-200 flex-shrink-0 mt-2"
+                  :class="expandedJobs.has(i) ? 'rotate-180' : ''"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
               </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 text-[var(--color-text-muted)] transition-transform duration-200 flex-shrink-0 mt-1"
-                :class="expandedJobs.has(i) ? 'rotate-180' : ''"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+              <div
+                v-show="expandedJobs.has(i)"
+                class="mt-4 pt-4 border-t border-[var(--color-border)] text-sm text-[var(--color-text-muted)] whitespace-pre-line leading-relaxed"
               >
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <div v-show="expandedJobs.has(i)" class="mt-4 text-sm text-[var(--color-text-muted)] whitespace-pre-line leading-relaxed">
-              {{ job.des }}
+                {{ job.des }}
+              </div>
             </div>
           </div>
         </div>
@@ -73,42 +87,48 @@
 
       <!-- Skills -->
       <div v-show="activeTab === 'skills'">
-        <!-- Web Development -->
-        <div class="mb-10">
-          <h3 class="text-lg font-semibold mb-6">{{ $t('ResumeArea.WebDevelop') }}</h3>
-          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-6">
-            <div
-              v-for="icon in webDevelopmentIcons"
-              :key="icon.id"
-              class="flex flex-col items-center text-center gap-2"
-            >
-              <img
-                v-if="icon.url"
-                :src="'/assets/img/works/webdevelop/' + icon.url"
-                :alt="icon.name"
-                class="w-12 h-12 object-contain"
-              />
-              <span class="text-xs text-[var(--color-text-muted)]">{{ icon.name }}</span>
+        <div class="max-w-4xl mx-auto space-y-12">
+          <!-- Web Development -->
+          <div class="reveal">
+            <h3 class="text-lg font-semibold mb-6">{{ $t('ResumeArea.WebDevelop') }}</h3>
+            <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-5">
+              <div
+                v-for="icon in webDevelopmentIcons"
+                :key="icon.id"
+                class="flex flex-col items-center text-center gap-2 group"
+              >
+                <div class="w-16 h-16 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center group-hover:border-primary group-hover:shadow-lg group-hover:shadow-primary/10 transition-all duration-200">
+                  <img
+                    v-if="icon.url"
+                    :src="'/assets/img/works/webdevelop/' + icon.url"
+                    :alt="icon.name"
+                    class="w-8 h-8 object-contain"
+                  />
+                </div>
+                <span class="text-xs text-[var(--color-text-muted)] group-hover:text-[var(--color-text)] transition-colors">{{ icon.name }}</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Hosting & Management -->
-        <div>
-          <h3 class="text-lg font-semibold mb-6">{{ $t('ResumeArea.WebHosting') }}</h3>
-          <div class="grid grid-cols-4 sm:grid-cols-6 gap-6">
-            <div
-              v-for="icon in hostingManagement"
-              :key="icon.id"
-              class="flex flex-col items-center text-center gap-2"
-            >
-              <img
-                v-if="icon.url"
-                :src="'/assets/img/works/management/' + icon.url"
-                :alt="icon.name"
-                class="w-12 h-12 object-contain"
-              />
-              <span class="text-xs text-[var(--color-text-muted)]">{{ icon.name }}</span>
+          <!-- Hosting & Management -->
+          <div class="reveal reveal-delay-1">
+            <h3 class="text-lg font-semibold mb-6">{{ $t('ResumeArea.WebHosting') }}</h3>
+            <div class="grid grid-cols-4 sm:grid-cols-6 gap-5">
+              <div
+                v-for="icon in hostingManagement"
+                :key="icon.id"
+                class="flex flex-col items-center text-center gap-2 group"
+              >
+                <div class="w-16 h-16 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center group-hover:border-primary group-hover:shadow-lg group-hover:shadow-primary/10 transition-all duration-200">
+                  <img
+                    v-if="icon.url"
+                    :src="'/assets/img/works/management/' + icon.url"
+                    :alt="icon.name"
+                    class="w-8 h-8 object-contain"
+                  />
+                </div>
+                <span class="text-xs text-[var(--color-text-muted)] group-hover:text-[var(--color-text)] transition-colors">{{ icon.name }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -119,6 +139,7 @@
 
 <script setup>
 const { tm } = useI18n()
+useReveal()
 
 const activeTab = ref('education')
 const expandedJobs = ref(new Set())

@@ -74,34 +74,34 @@ Phase 1 (Foundation) → Phase 2 (UI) → Phase 3 (Intro + CLI) → Phase 4 (Res
 
 ---
 
-## Phase 2: UI Modernization — Component Redesign ⬜
+## Phase 2: UI Modernization — Component Redesign ✅
 **Goal:** Make the GUI portfolio look modern (2025 standard).
 **Design references:** Linear.app, Vercel.com, brittanychiang.com
 
-### 2A: Design System Setup ⬜
-- [ ] Define color palette as Tailwind theme extensions
-- [ ] Set up dark/light mode color tokens
-- [ ] Create reusable UI primitives: Button, Card, Badge, SectionWrapper
-- [ ] Set up scroll animations (IntersectionObserver + CSS transitions)
+### 2A: Design System Setup ✅
+- [x] Define color palette as Tailwind theme + SCSS CSS variables
+- [x] Set up dark/light mode color tokens (--color-primary-glow, improved muted)
+- [x] Create reusable UI primitives: btn-primary, btn-outline, glass, glass-hover, section-label
+- [x] Set up scroll animations (useReveal composable + IntersectionObserver + CSS .reveal class)
 
-### 2B: Component Rewrites ⬜
-- [ ] **Header**: Sticky, glassmorphism bg, clean nav, dark mode toggle, language picker
-- [ ] **HeroArea**: Full viewport, typed animation, stats bar, 2 CTAs, scroll indicator
-  - Keep Three.js Galaxy as background option
-- [ ] **ServiceArea**: 6-card icon grid with hover lift effect
-- [ ] **AboutArea**: Photo + bio + language badges + stats row
-- [ ] **ResumeArea**: 3 tabs (Education / Experience / Skills) with timeline
-- [ ] **WorksArea**: Grid with filter tabs, hover overlay, tech stack tags
-- [ ] **ContactArea**: Clean form (placeholder — full backend in Phase 5)
-- [ ] **Footer**: Minimal, social links row
+### 2B: Component Rewrites ✅
+- [x] **Header**: Sticky glassmorphism (already done in Phase 1, kept)
+- [x] **HeroArea**: Full viewport, gradient bg, glow blobs, stats bar, 2 CTAs, scroll indicator
+- [x] **ServiceArea**: 4-card grid with glass-hover, centered layout
+- [x] **AboutArea**: Photo with glow, language badges (flags), info grid cards
+- [x] **ResumeArea**: 3 pill tabs, vertical timeline with dots, expandable jobs, skill cards with hover
+- [x] **WorksArea**: Pill filter tabs, aspect-ratio cards, hover overlay with arrow, type badges
+- [x] **ContactArea**: Glass info cards, modern form inputs, Teleport success modal
+- [x] **Footer**: Compact row layout, social icon buttons with hover
 
-### 2C: Responsive & Polish ⬜
-- [ ] Mobile-first pass on every component (iPhone 13 = 390px)
-- [ ] Tablet breakpoint (640-1024px)
-- [ ] Test dark mode for every component
-- [ ] Section transition animations (fade + slide on scroll)
+### 2C: Responsive & Polish ✅
+- [x] Mobile-first via Tailwind responsive classes on all components
+- [x] Tablet breakpoints (sm/lg grids)
+- [x] Dark mode tokens improved (primary-glow, better muted contrast)
+- [x] Section reveal animations (fade + slide up on scroll via useReveal)
+- [x] Staggered reveal delays (reveal-delay-1 through 4)
 
-**Effort:** High
+**Effort:** High — COMPLETED
 
 ---
 

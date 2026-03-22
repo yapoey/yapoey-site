@@ -4,19 +4,19 @@
     <div class="sticky top-0 z-50 bg-[var(--color-bg)] bg-opacity-90 backdrop-blur-md border-b border-[var(--color-border)]">
       <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
         <NuxtLink to="/gui" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">
-          ← Back to Portfolio
+          {{ $t('ResumePage.backToPortfolio') }}
         </NuxtLink>
         <div class="flex items-center gap-3">
-          <a
-            href="/assets/resume/YapoeY.en.pdf"
+          <NuxtLink
+            to="/resume/print"
+            target="_blank"
             class="btn-primary text-sm !px-5 !py-2"
-            download
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+              <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clip-rule="evenodd" />
             </svg>
-            Download PDF
-          </a>
+            {{ $t('ResumePage.printSavePdf') }}
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -59,11 +59,11 @@
       <section class="mb-12">
         <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
           <span class="w-8 h-1 bg-primary rounded-full"></span>
-          Experience
+          {{ $t('ResumePage.experience') }}
         </h2>
         <div class="space-y-8">
-          <div v-for="(job, i) in experience" :key="i" class="relative pl-6 border-l-2 border-primary/20">
-            <div class="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-[var(--color-bg)]" />
+          <div v-for="(job, i) in experience" :key="i" class="relative ps-6 border-s-2 border-primary/20">
+            <div class="absolute -start-[5px] top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-[var(--color-bg)]" />
             <div class="flex flex-wrap items-baseline gap-2 mb-1">
               <h3 class="text-lg font-semibold">{{ job.title }}</h3>
             </div>
@@ -98,11 +98,11 @@
       <section class="mb-12">
         <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
           <span class="w-8 h-1 bg-primary rounded-full"></span>
-          Education
+          {{ $t('ResumePage.education') }}
         </h2>
         <div class="space-y-6">
-          <div v-for="(edu, i) in education" :key="i" class="relative pl-6 border-l-2 border-primary/20">
-            <div class="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-[var(--color-bg)]" />
+          <div v-for="(edu, i) in education" :key="i" class="relative ps-6 border-s-2 border-primary/20">
+            <div class="absolute -start-[5px] top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-[var(--color-bg)]" />
             <h3 class="text-lg font-semibold">{{ edu.degree }}</h3>
             <p class="text-sm text-[var(--color-text-muted)]">
               {{ edu.school }} · {{ edu.location }} · <span class="text-primary">{{ edu.year }}</span>
@@ -115,7 +115,7 @@
       <section class="mb-12">
         <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
           <span class="w-8 h-1 bg-primary rounded-full"></span>
-          Skills
+          {{ $t('ResumePage.skills') }}
         </h2>
         <div class="grid sm:grid-cols-2 gap-6">
           <div v-for="(items, category) in skills" :key="category">
@@ -144,7 +144,7 @@
       <section class="mb-12">
         <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
           <span class="w-8 h-1 bg-primary rounded-full"></span>
-          Countries Visited ({{ countries.length }}+)
+          {{ $t('ResumePage.countriesVisited') }} ({{ countries.length }}+)
         </h2>
         <div class="flex flex-wrap gap-3">
           <div

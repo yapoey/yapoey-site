@@ -10,15 +10,15 @@
     <div class="relative z-10 text-center px-6">
       <!-- Typewriter name -->
       <div class="mb-3">
-        <span class="text-sm font-mono text-primary/60 tracking-widest uppercase">Welcome</span>
+        <span class="text-sm font-mono text-primary/60 tracking-widest uppercase">{{ $t('IntroPage.welcome') }}</span>
       </div>
 
       <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4">
-        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">{{ displayName }}</span><span class="animate-blink text-primary">|</span>
+        {{ $t('IntroPage.hiIm') }}<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">{{ displayName }}</span><span class="animate-blink text-primary">|</span>
       </h1>
 
       <p class="text-lg sm:text-xl text-gray-400 mb-12 opacity-0 transition-opacity duration-500" :class="{ 'opacity-100': showSubtitle }">
-        Full Stack Developer &middot; Seoul, Korea
+        {{ $t('IntroPage.subtitle') }}
       </p>
 
       <!-- Mode Buttons -->
@@ -29,7 +29,7 @@
                  hover:border-green-400 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 cursor-pointer"
           @click="chooseMode('cli')"
         >
-          <span class="text-green-500/60 mr-2">&gt;</span> CLI Mode
+          <span class="text-green-500/60 me-2">&gt;</span> {{ $t('IntroPage.cliMode') }}
           <div class="absolute inset-0 rounded-2xl bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
 
@@ -39,19 +39,19 @@
                  hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer"
           @click="chooseMode('gui')"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 -mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline me-2 -mt-0.5" viewBox="0 0 20 20" fill="currentColor">
             <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
           </svg>
-          GUI Mode
+          {{ $t('IntroPage.guiMode') }}
           <div class="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
       </div>
 
       <!-- Keyboard hint -->
       <div class="mt-8 text-sm text-gray-600 font-mono opacity-0 transition-opacity duration-500 delay-700" :class="{ 'opacity-100': showHint }">
-        Press <kbd class="px-2 py-0.5 rounded bg-gray-800 text-gray-400 text-xs">1</kbd> CLI
+        {{ $t('IntroPage.keyboardHint') }} <kbd class="px-2 py-0.5 rounded bg-gray-800 text-gray-400 text-xs">1</kbd> {{ $t('IntroPage.cli') }}
         &nbsp;&middot;&nbsp;
-        <kbd class="px-2 py-0.5 rounded bg-gray-800 text-gray-400 text-xs">2</kbd> GUI
+        <kbd class="px-2 py-0.5 rounded bg-gray-800 text-gray-400 text-xs">2</kbd> {{ $t('IntroPage.gui') }}
       </div>
     </div>
   </div>

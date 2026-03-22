@@ -218,26 +218,30 @@ Phase 1 (Foundation) → Phase 2 (UI) → Phase 3 (Intro + CLI) → Phase 4 (Res
 
 ---
 
-## Phase 7: Translations (EN/KO/AR + RTL) ⬜
+## Phase 7: Translations (EN/KO/AR + RTL) ✅
 **Goal:** All content in 3 languages, Arabic with full RTL support.
-**Do last** — all content must be finalized first.
 
-### 7A: English Content Finalization ⬜
-- [ ] Update all locale keys with new content from phases 2-6
-- [ ] Add new keys for: CLI, Timeline, Blog, Admin sections
+### 7A: English Content Finalization ✅
+- [x] Rewrote locale/en.ts with all new keys (IntroPage, ResumePage, HeroArea stats, etc.)
+- [x] Removed old keys (educations/experiences arrays moved to useResumeData.js)
+- [x] All hardcoded text in components replaced with $t() keys
 
-### 7B: Korean Translation ⬜
-- [ ] Translate updated en.js → ko.js (Gemini CLI assisted)
-- [ ] Review and polish
+### 7B: Korean Translation ✅
+- [x] Full Korean locale (locale/ko.ts) — all keys translated
+- [x] Natural Korean phrasing, technical terms kept in English
 
-### 7C: Arabic Translation + RTL ⬜
-- [ ] Create ar.js from en.js (Gemini CLI assisted)
-- [ ] Add `dir="rtl"` on `<html>` when locale = `ar`
-- [ ] RTL-specific Tailwind utilities
-- [ ] Test every section in RTL mode
-- [ ] Fix any layout issues
+### 7C: Arabic Translation + RTL ✅
+- [x] Full Arabic locale (locale/ar.ts) — all keys translated
+- [x] `dir="rtl"` on `<html>` via app.vue computed htmlAttrs
+- [x] RTL-safe CSS: `ps-`/`pe-`/`ms-`/`me-`/`border-s`/`-start-` instead of left/right
+- [x] Timeline dots use `-start-` for RTL flip
 
-**Effort:** Medium
+### 7D: Printable Resume ✅
+- [x] `/resume/print` page — clean ATS-friendly layout with @media print CSS
+- [x] Download button updated to open print page
+- [x] Old .docx and .old.pdf files removed
+
+**Effort:** Medium — COMPLETED
 
 ---
 

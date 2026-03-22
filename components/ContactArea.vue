@@ -2,12 +2,11 @@
   <section id="contact" class="bg-[var(--color-bg-2)]">
     <div class="section-wrapper">
       <div class="text-center mb-16">
-        <span class="section-label reveal">Get in Touch</span>
+        <span class="section-label reveal">{{ $t('ContactArea.getInTouch') }}</span>
         <h2 class="section-title reveal reveal-delay-1">{{ $t('ContactArea.contact') }}</h2>
       </div>
 
       <div class="max-w-4xl mx-auto grid lg:grid-cols-5 gap-12">
-        <!-- Left: Contact Info -->
         <div class="lg:col-span-2 space-y-6 reveal reveal-delay-2">
           <div class="glass p-5 flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -29,58 +28,29 @@
               </svg>
             </div>
             <div>
-              <div class="text-xs text-[var(--color-text-muted)] uppercase tracking-wider">Location</div>
+              <div class="text-xs text-[var(--color-text-muted)] uppercase tracking-wider">{{ $t('ContactArea.location') }}</div>
               <div class="font-medium mt-1">{{ $t('Common.vAddress') }}</div>
             </div>
           </div>
         </div>
 
-        <!-- Right: Contact Form -->
         <div class="lg:col-span-3 reveal reveal-delay-3">
           <form class="space-y-5" @submit.prevent="sendMessage">
             <div class="grid sm:grid-cols-2 gap-5">
-              <input
-                v-model="form.name"
-                type="text"
-                :placeholder="$t('ContactArea.enterName')"
-                class="w-full px-5 py-3.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
-              />
-              <input
-                v-model="form.email"
-                type="email"
-                :placeholder="$t('ContactArea.urEmail')"
-                class="w-full px-5 py-3.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
-              />
+              <input v-model="form.name" type="text" :placeholder="$t('ContactArea.enterName')" class="w-full px-5 py-3.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all" />
+              <input v-model="form.email" type="email" :placeholder="$t('ContactArea.urEmail')" class="w-full px-5 py-3.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all" />
             </div>
-            <input
-              v-model="form.subject"
-              type="text"
-              :placeholder="$t('ContactArea.enterDiscussion')"
-              class="w-full px-5 py-3.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
-            />
-            <textarea
-              v-model="form.message"
-              rows="5"
-              :placeholder="$t('ContactArea.enterMsg')"
-              class="w-full px-5 py-3.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all resize-none"
-            />
-            <button
-              type="submit"
-              :disabled="!isValid"
-              class="btn-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none"
-            >
+            <input v-model="form.subject" type="text" :placeholder="$t('ContactArea.enterDiscussion')" class="w-full px-5 py-3.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all" />
+            <textarea v-model="form.message" rows="5" :placeholder="$t('ContactArea.enterMsg')" class="w-full px-5 py-3.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all resize-none" />
+            <button type="submit" :disabled="!isValid" class="btn-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none">
               {{ $t('ContactArea.sendMsg') }}
             </button>
           </form>
         </div>
       </div>
 
-      <!-- Success overlay -->
       <Teleport to="body">
-        <div
-          v-if="showConfirm"
-          class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in"
-        >
+        <div v-if="showConfirm" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
           <div class="glass p-10 text-center animate-slide-up">
             <div class="text-5xl mb-4">😀</div>
             <div class="text-xl font-semibold">{{ $t('Common.sent') }}!</div>
@@ -94,13 +64,7 @@
 <script setup>
 useReveal()
 
-const form = reactive({
-  name: '',
-  email: '',
-  subject: '',
-  message: '',
-})
-
+const form = reactive({ name: '', email: '', subject: '', message: '' })
 const showConfirm = ref(false)
 const isValid = computed(() => form.name && form.email && form.message)
 

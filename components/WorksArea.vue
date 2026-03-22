@@ -1,88 +1,67 @@
 <template>
-  <!-- Start Works Area -->
-  <section class="works-area section-padding sky-blue" id="works">
-    <div class="container">
-      <!-- Start Section Title -->
-      <div class="row mb-50">
-        <div class="col-lg-12">
-          <div class="section-title">
-            <h2>{{ $t("WorkArea.myProject") }}</h2>
-          </div>
-        </div>
-      </div>
-      <!-- End Section Title -->
+  <section id="works" class="bg-[var(--color-bg)]">
+    <div class="section-wrapper">
+      <h2 class="section-title mb-10">{{ $t('WorkArea.myProject') }}</h2>
 
-      <div class="row mb-4">
-        <div class="col-xs-12">
-          <div class="filters">
-            <ul>
-              <li class="active" data-filter=".all">All</li>
-              <li
-                @click="$ga.event('WorksArea', 'Frontend')"
-                :data-filter="'.' + $t('Common.frontend')"
-              >
-                {{ $t("Common.frontend") }}
-              </li>
-              <li
-                @click="$ga.event('WorksArea', 'Backend')"
-                :data-filter="'.' + $t('Common.fullStack')"
-              >
-                {{ $t("Common.fullStack") }}
-              </li>
-              <li
-                @click="$ga.event('WorksArea', 'Practicing')"
-                :data-filter="'.' + $t('Common.practicing')"
-              >
-                {{ $t("Common.practicing") }}
-              </li>
-            </ul>
-          </div>
-        </div>
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap gap-3 mb-10">
+        <button
+          v-for="filter in filters"
+          :key="filter.value"
+          class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer"
+          :class="activeFilter === filter.value
+            ? 'bg-primary text-white'
+            : 'bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-text)]'"
+          @click="activeFilter = filter.value"
+        >
+          {{ filter.label }}
+        </button>
       </div>
-      <div class="filters-content">
-        <div class="row grid">
-          <!-- start single work item -->
-          <div
-            class="single-work col-lg-4 col-md-6 col-sm-12 all"
-            v-for="(project, index) in $t('WorkArea.projects')"
-            :key="'project' + index"
-            :class="project.type"
-            @click="$ga.event('WorksArea', 'Projects', project.name)"
-          >
-            <div
-              class="position-relative"
-              :style="project.xMargin ? 'margin-top: 20px' : ''"
-            >
-              <div class="thumb">
-                <img
-                  class="image img-fluid"
-                  :width="project.width"
-                  :height="project.height"
-                  :src="'/assets/img/works/portfolio/' + project.img"
-                  alt="work"
-                />
-              </div>
-              <a
-                class="overlay transition"
-                target="_blank"
-                :href="project.url"
-              ></a>
-              <div class="short-info transition">
-                <h4>{{ project.name }}</h4>
-                <div class="cat">{{ project.hash }}</div>
-              </div>
-            </div>
+
+      <!-- Projects Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a
+          v-for="(project, i) in filteredProjects"
+          :key="i"
+          :href="project.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group glass rounded-xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
+        >
+          <div class="relative overflow-hidden">
+            <img
+              :src="'/assets/img/works/portfolio/' + project.img"
+              :alt="project.name"
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300" />
           </div>
-          <!-- end single work item -->
-        </div>
+          <div class="p-4">
+            <h4 class="font-semibold">{{ project.name }}</h4>
+            <span class="text-sm text-primary">{{ project.type }}</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
-  <!-- End Works Area -->
 </template>
 
-<script>
-export default {
-  name: "WorksArea",
-};
+<script setup>
+const { t, tm } = useI18n()
+
+const activeFilter = ref('all')
+
+const filters = computed(() => [
+  { label: 'All', value: 'all' },
+  { label: t('Common.frontend'), value: t('Common.frontend') },
+  { label: t('Common.fullStack'), value: t('Common.fullStack') },
+  { label: t('Common.practicing'), value: t('Common.practicing') },
+])
+
+const projects = computed(() => tm('WorkArea.projects'))
+
+const filteredProjects = computed(() => {
+  if (activeFilter.value === 'all') return projects.value
+  return projects.value.filter((p) => p.type === activeFilter.value)
+})
 </script>

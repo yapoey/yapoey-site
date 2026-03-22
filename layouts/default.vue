@@ -1,249 +1,48 @@
 <template>
-  <div>
-    <!-- Start Preloader Area -->
-    <div class="preloader-area">
-      <div class="loader">
-        <div class="loader-inner"></div>
-        <div class="loader-inner"></div>
-        <div class="loader-inner"></div>
-        <div class="loader-inner"></div>
-        <div class="loader-inner"></div>
-        <div class="loader-inner"></div>
-        <div class="loader-inner"></div>
-        <div class="loader-inner"></div>
-      </div>
-    </div>
-    <!-- End Preloader Area -->
+  <div class="min-h-screen flex flex-col">
     <Header />
-    <nuxt />
+    <main class="flex-1">
+      <slot />
+    </main>
     <Footer />
+
+    <!-- Scroll to top button -->
+    <button
+      v-show="showScrollTop"
+      class="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-primary text-white shadow-lg hover:bg-primary-dark transition-all duration-300 cursor-pointer"
+      aria-label="Scroll to top"
+      @click="scrollToTop"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+      </svg>
+    </button>
   </div>
 </template>
 
-<script>
-import Header from "~/components/Header";
-import Footer from "~/components/Footer";
-export default {
-  // middleware: ["init"],
-  components: {
-    Header,
-    Footer,
+<script setup>
+useHead({
+  title: 'YapoeY',
+  htmlAttrs: {
+    lang: 'en',
   },
-  head() {
-    return {
-      title: "yapoey",
-      bodyAttrs: {
-        class: this.$store.getters.isDark ? "dark-theme" : "",
-      },
-    };
-  },
-  mounted() {
-    this.$store.dispatch("initColorMode");
+})
 
-    /** ------- Pre Loader **/
-    $(window).on("load", function () {
-      $(".preloader-area").delay(200).fadeOut(500);
-    });
+const showScrollTop = ref(false)
 
-    $("body").scrollspy({ target: "#navigation", spy: "scroll", offset: 300 });
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
 
-    /* ================================================= */
-    /*	slick Nav
-     /* ================================================= */
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
-    /* mobile_menu */
+function handleScroll() {
+  showScrollTop.value = window.scrollY > 300
+}
 
-    var menu = $("ul#navigation");
-    if (menu.length) {
-      menu.slicknav({
-        prependTo: ".mobile_menu",
-        closedSymbol: "+",
-        openedSymbol: "-",
-        closeOnClick: true,
-      });
-    }
-
-    /* Smooth Scrolling Using Navigation Menu */
-
-    $('.nav-link[href*="#"]').on("click", function (e) {
-      $("html,body").animate(
-        {
-          scrollTop: $($(this).attr("href")).offset().top - 70,
-        },
-        500
-      );
-      e.preventDefault();
-    });
-
-    /*  Custom Sticky Menu  */
-
-    $(window).on("scroll", function () {
-      var scroll = $(window).scrollTop();
-      if (scroll < 245) {
-        $(".header-sticky").removeClass("sticky-bar");
-      } else {
-        $(".header-sticky").addClass("sticky-bar");
-      }
-    });
-
-    /* ================================================= */
-    /*	Works Area Filter js
-     /* ================================================= */
-
-    $(window).on("load", function () {
-      $(".filters ul li").on("click", function () {
-        $(".filters ul li").removeClass("active");
-        $(this).addClass("active");
-
-        var data = $(this).attr("data-filter");
-        $grid.isotope({
-          filter: data,
-        });
-      });
-
-      if (document.getElementById("works")) {
-        var $grid = $(".grid").isotope({
-          itemSelector: ".all",
-          percentPosition: true,
-          masonry: {
-            columnWidth: ".all",
-          },
-        });
-      }
-
-      /* ================================================= */
-      /*	Testimonial Slider
-         /* ================================================= */
-
-      $(".test-slider").slick({
-        dots: true,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        arrows: false,
-      });
-    });
-
-    /* ================================================= */
-    /*	Blog Slider
-     /* ================================================= */
-
-    function blog_slider() {
-      if ($(".blog-slider").length) {
-        $(".blog-slider").owlCarousel({
-          loop: true,
-          margin: 0,
-          items: 1,
-          nav: true,
-          autoplay: true,
-          smartSpeed: 1500,
-          dots: true,
-          navContainer: ".blog-text-inner",
-          navText: [
-            '<i class="icon-arrow-left"></i>',
-            '<i class="icon-arrow-right"></i>',
-          ],
-          responsiveClass: true,
-        });
-      }
-    }
-    blog_slider();
-
-    /* ================================================= */
-    /*    sildeBar scroll
-     /* ================================================= */
-    $.scrollUp({
-      scrollName: "scrollUp",
-      topDistance: "300",
-      topSpeed: 300,
-      animation: "fade",
-      animationInSpeed: 200,
-      animationOutSpeed: 200,
-      scrollText: '<i class="icon-arrow-up"></i>',
-      activeOverlay: false,
-    });
-
-    /**
-     * =======================================
-     * typed.js customize
-     * =======================================
-     */
-
-    $("#typed").typed({
-      stringsElement: $("#typed-strings"),
-      typeSpeed: 100,
-      backDelay: 1000,
-      loop: true,
-      contentType: "html", // or text
-      // defaults to false for infinite loop
-      loopCount: false,
-      callback: function () {
-        //call back after one loop
-        foo();
-      },
-      resetCallback: function () {
-        newTyped();
-      },
-    });
-
-    $(".reset").click(function () {
-      "use strict";
-      $("#typed").typed("reset");
-    });
-
-    function newTyped() {
-      "use strict" /* A new typed object */;
-    }
-
-    function foo() {
-      "use strict";
-    }
-
-    // Resume Navigation
-
-    (function () {
-      //variable that will hold the href attr of the links in the menu
-      var sections = [];
-      //variable that stores the id of the section
-      var id = false;
-      //variable for the selection of the anchors in the navbar
-      var $navbara = $("#navi a");
-
-      $navbara.on("click", function (e) {
-        //prevent the page from refreshing
-        e.preventDefault();
-        //set the top offset animation and speed
-        $("html, body").animate(
-          {
-            scrollTop: $($(this).attr("href")).offset().top - 180,
-          },
-          500
-        );
-        //hash($(this).attr("href"));
-      });
-
-      //select all the anchors in the navbar one after another
-      $navbara.each(function () {
-        // and adds them in the sections variable
-        sections.push($($(this).attr("href")));
-      });
-      $(window).on("scroll", function (e) {
-        // scrollTop retains the value of the scroll top with the reference at the middle of the page
-        var scrollTop = $(this).scrollTop() + $(window).height() / 2;
-        //cycle through the values in sections array
-        for (var i in sections) {
-          var section = sections[i];
-          //if scrollTop variable is bigger than the top offset of a section in the sections array then
-          if (scrollTop > section.offset().top) {
-            var scrolled_id = section.attr("id");
-          }
-        }
-        if (scrolled_id !== id) {
-          id = scrolled_id;
-          $($navbara).removeClass("current");
-          $('#navi a[href="#' + id + '"]').addClass("current");
-        }
-      });
-    })();
-  },
-};
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 </script>

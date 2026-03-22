@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #ffffff;
+    --color-bg-2: #f8fafc;
+    --color-surface: #f1f5f9;
+    --color-border: rgba(0, 0, 0, 0.08);
+    --color-text: #0f172a;
+    --color-text-muted: #64748b;
+  }
+
+  .dark {
+    --color-bg: #0a0a0f;
+    --color-bg-2: #13131a;
+    --color-surface: #1a1a25;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-text: #e2e8f0;
+    --color-text-muted: #64748b;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text)] font-sans antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@layer components {
+  .section-wrapper {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-muted text-lg mb-12;
+  }
+
+  .glass {
+    @apply bg-[var(--color-surface)] bg-opacity-80 backdrop-blur-md border border-[var(--color-border)] rounded-xl;
+  }
+}

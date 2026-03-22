@@ -1,69 +1,51 @@
 <template>
-  <!-- About Area Start -->
-  <section class="about-area section-padding sky-blue" id="about">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 d-none d-lg-block">
-          <!-- Start About Area Image -->
-          <div class="img-about">
-            <img
-              class="img-fluid"
-              src="/assets/img/about/aboutMe.png"
-              alt="abou me"
-            />
-          </div>
-          <!-- End About Area Image -->
+  <section id="about" class="bg-[var(--color-bg)]">
+    <div class="section-wrapper">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left: Image -->
+        <div class="hidden lg:flex justify-center">
+          <img
+            src="/assets/img/about/aboutMe.png"
+            alt="About Me"
+            class="max-w-sm w-full h-auto rounded-2xl"
+          />
         </div>
 
-        <div class="col-lg-6 col-md-12">
-          <!-- Start About Detail -->
-          <div class="about-details">
-            <div class="section-title mb-50">
-              <h2>{{ $t("AboutArea.aboutMe") }}</h2>
-            </div>
-            <p>{{ $t("AboutArea.summery") }}.</p>
-            <ul class="about-info mt-4">
-              <li>
-                <span>{{ $t("AboutArea.name") }}</span>
-                <span>{{ $t("Common.vName") }}</span>
-              </li>
-              <li>
-                <span>{{ $t("AboutArea.dob") }}</span>
-                <span>{{ $t("Common.vDob") }}</span>
-              </li>
-              <li>
-                <span>{{ $t("AboutArea.address") }}</span>
-                <span>{{ $t("Common.vAddress") }}</span>
-              </li>
-              <!--          <li><span>{{$t('AboutArea.zipCode')}}</span> <span>{{$t('Common.vZipcode')}}</span></li>-->
-              <li>
-                <span>{{ $t("Common.email") }}</span>
-                <span>{{ $t("Common.vEmail") }}</span>
-              </li>
-              <li>
-                <span>{{ $t("Common.phone") }}</span>
-                <span>{{ $t("Common.vPhone") }}</span>
-              </li>
-            </ul>
-            <div class="download-btn mt-5">
-              <a
-                class="btn radius-btn"
-                @click="$ga.event('AboutArea', 'Download detailed CV')"
-                :href="$t('doc.pdf')"
-                >{{ $t("AboutArea.downloadCv") }}</a
-              >
-            </div>
+        <!-- Right: Details -->
+        <div>
+          <h2 class="section-title">{{ $t('AboutArea.aboutMe') }}</h2>
+          <p class="text-[var(--color-text-muted)] mt-4 leading-relaxed">
+            {{ $t('AboutArea.summery') }}
+          </p>
+
+          <!-- Info List -->
+          <ul class="mt-8 space-y-3">
+            <li v-for="item in infoItems" :key="item.label" class="flex gap-3">
+              <span class="font-medium min-w-[120px]">{{ $t(item.label) }}</span>
+              <span class="text-[var(--color-text-muted)]">{{ $t(item.value) }}</span>
+            </li>
+          </ul>
+
+          <!-- Download CV -->
+          <div class="mt-8">
+            <a
+              :href="$t('doc.pdf')"
+              class="inline-block px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium"
+            >
+              {{ $t('AboutArea.downloadCv') }}
+            </a>
           </div>
-          <!-- End About Detail -->
         </div>
       </div>
     </div>
   </section>
-  <!-- About Area End -->
 </template>
 
-<script>
-export default {
-  name: "AboutArea",
-};
+<script setup>
+const infoItems = [
+  { label: 'AboutArea.name', value: 'Common.vName' },
+  { label: 'AboutArea.dob', value: 'Common.vDob' },
+  { label: 'AboutArea.address', value: 'Common.vAddress' },
+  { label: 'Common.email', value: 'Common.vEmail' },
+]
 </script>

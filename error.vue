@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center">
+  <div class="min-h-screen flex items-center justify-center bg-[var(--color-bg)]">
     <div class="text-center">
       <h1 class="text-6xl font-bold text-primary mb-4">
         {{ error?.statusCode || 500 }}
@@ -7,18 +7,22 @@
       <p class="text-xl text-[var(--color-text-muted)] mb-8">
         {{ error?.statusCode === 404 ? 'Page not found' : 'An error occurred' }}
       </p>
-      <NuxtLink
-        to="/"
-        class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
+      <button
+        class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors cursor-pointer"
+        @click="handleError"
       >
         Go Home
-      </NuxtLink>
+      </button>
     </div>
   </div>
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   error: Object,
 })
+
+function handleError() {
+  clearError({ redirect: '/' })
+}
 </script>

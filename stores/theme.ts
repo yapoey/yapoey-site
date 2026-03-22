@@ -1,7 +1,7 @@
 import { defineStore, skipHydrate } from 'pinia'
 
 export const useThemeStore = defineStore('theme', () => {
-  const mode = ref<'light' | 'dark'>('light')
+  const mode = ref<'light' | 'dark'>('dark')
 
   const isDark = computed(() => mode.value === 'dark')
 

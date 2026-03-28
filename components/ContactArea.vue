@@ -69,7 +69,6 @@ const showConfirm = ref(false)
 const isValid = computed(() => form.name && form.email && form.message)
 
 async function sendMessage() {
-  console.log('Contact form submitted:', { ...form })
   showConfirm.value = true
   form.name = form.email = form.subject = form.message = ''
   setTimeout(() => { showConfirm.value = false }, 1500)

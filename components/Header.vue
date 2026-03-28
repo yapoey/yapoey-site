@@ -126,7 +126,7 @@
           class="block px-3 py-2 rounded-lg text-sm font-mono font-medium text-green-400 hover:bg-green-500/10 transition-colors"
           @click="mobileMenuOpen = false"
         >
-          &gt;_ CLI Mode
+          &gt;_ {{ $t('Header.cli') }}
         </NuxtLink>
         <div class="border-t border-[var(--color-border)] pt-2">
           <button

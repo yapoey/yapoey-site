@@ -13,7 +13,7 @@ const KNOWN_COMMANDS = [
   'help', 'about', 'whoami', 'resume', 'projects', 'skills',
   'contact', 'social', 'blog', 'education', 'languages',
   'fun', 'stats', 'clear', 'gui', 'exit', 'lang', 'ask',
-  'open', 'theme', 'history', 'neofetch', 'clear',
+  'open', 'theme', 'history', 'neofetch',
 ]
 
 const PROJECTS = [

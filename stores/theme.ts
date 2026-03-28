@@ -52,7 +52,7 @@ export const useThemeStore = defineStore('theme', () => {
   }
 
   return {
-    mode,
+    mode: skipHydrate(mode),
     isDark,
     initColorMode,
     setColorMode,

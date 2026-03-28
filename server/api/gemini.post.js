@@ -141,10 +141,9 @@ export default defineEventHandler(async (event) => {
 
     return { answer }
   } catch (err) {
-    console.error('[Gemini] Error:', err?.data || err?.message || err)
     throw createError({
       statusCode: 502,
-      message: err?.data?.error?.message || 'Failed to reach Gemini API',
+      message: 'Failed to reach Gemini API',
     })
   }
 })

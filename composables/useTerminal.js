@@ -18,7 +18,7 @@ const KNOWN_COMMANDS = [
 
 const PROJECTS = [
   { id: 1, name: 'Korean Baseball League', tech: 'Nuxt.js, Vuex, SASS', type: 'Frontend', url: 'https://kbl-pc.b2ggames.net', company: 'b2ggames', desc: 'Fantasy gaming platform for Korean baseball fans with real-time competition features.' },
-  { id: 2, name: 'Asian Model Festival 2021', tech: 'Nuxt.js, Vuex', type: 'Frontend', url: 'https://www.amffantasy.com/main', company: 'b2ggames', desc: 'Event website for AMF — Asia\'s biggest model competition with voting and live features.' },
+  { id: 2, name: 'Asian Model Festival 2021', tech: 'Nuxt.js, Vuex', type: 'Frontend', url: 'https://www.amffantasy.com/main', company: 'b2ggames', desc: 'Event website for AMF, Asia\'s biggest model competition with voting and live features.' },
   { id: 3, name: 'Himedi Medical Platform', tech: 'Vue.js, Vuex, Bootstrap, Axios, i18n', type: 'Frontend', url: 'https://himedi.com', company: 'Himedi', desc: 'Medical tourism platform connecting Korean hospitals with international patients. Multi-language (EN/AR/RU).' },
   { id: 4, name: 'GeeksFamily POS System', tech: 'Vue.js, Laravel, MySQL, Chart.js', type: 'Full Stack', url: 'http://pos.woozza.dunkul.site/', company: 'GeeksFamily', desc: 'Point-of-sale system for restaurant delivery sharing with order management and analytics.' },
   { id: 5, name: 'GeeksFamily Woozza', tech: 'Vue.js, Bootstrap, jQuery', type: 'Frontend', url: 'https://www.woozza.co.kr/', company: 'GeeksFamily', desc: 'Main company website and food ordering web application.' },
@@ -31,35 +31,35 @@ const PROJECTS = [
 ]
 
 const EXPERIENCE_DATA = `
-Sibel Health International (2022/10 — Present) Senior Frontend Developer & Frontend Team Lead, Full-time, Seoul Korea & US
+Sibel Health International (2022/10 ~ Present) Senior Frontend Developer & Frontend Team Lead, Full-time, Seoul Korea & US
 - Lead frontend team across Korea and US offices
-- Built Discovery Hub — migrated entire React codebase to Vue.js from scratch (256 commits)
+- Built Discovery Hub, migrated entire React codebase to Vue.js from scratch (256 commits)
 - Created Sibel Health Design System (atomic design), extracted as npm workspace package
-- Built Central Monitoring (Tucana) — real-time 64-patient monitoring via WebSocket (79 commits)
-- Traveled to US 2024 to fix critical Maternal project issues — helped achieve FDA approval
+- Built Central Monitoring (Tucana), real-time 64-patient monitoring via WebSocket (79 commits)
+- Traveled to US 2024 to fix critical Maternal project issues, helped achieve FDA approval
 - Created mock server, E2E testing (Cypress), unit testing (Jest), GitHub Actions CI
 - Tech: Vue.js, Next.js, TypeScript, SCSS, WebSocket, Docker, Cypress, Jest, Monorepo
 
-YapoeY Bit (2022/10 — Present) Product Manager & Technical Lead, Studio, Seoul Korea
+YapoeY Bit (2022/10 ~ Present) Product Manager & Technical Lead, Studio, Seoul Korea
 - Founded development studio, leading frontend/backend/mobile teams
 - Delivered 10+ products for clients in Korea, Egypt, Qatar, Japan
 - Key projects: NooN Center (education platform, 576 commits), Russian Whale (compound management, 547 commits), bizNavi (enterprise mobile app, 816 commits), ChaiTalk (social app, 193 commits), Layun (CMS, 285 commits), Seoul Bird (bird watching platform), Meya-Meya (AI restaurant ordering), cTask, West East Forte
 - Total: ~3000 commits across all studio projects
 - Tech: Vue, Nuxt, Next.js, React, Flutter, Node.js, Express, NestJS, MySQL, PostgreSQL, DynamoDB, Redis, AWS, Docker
 
-b2ggames (2021/12 — 2022/10) Frontend Developer, Full-time, Seoul Korea
+b2ggames (2021/12 ~ 2022/10) Frontend Developer, Full-time, Seoul Korea
 - Built AMF event website and Korean Baseball League gaming platform
 - Tech: Nuxt.js, Vuex, SASS, Jira, Bitbucket
 
-Himedi (2019/12 — 2021/11) Frontend Developer, Full-time, Seoul Korea
+Himedi (2019/12 ~ 2021/11) Frontend Developer, Full-time, Seoul Korea
 - Built medical tourism platform from scratch, 3 languages (EN/AR/RU) with RTL
 - Tech: Vue.js, Vuex, Bootstrap 4, Webpack, Axios, i18n, RTLCSS
 
-GeeksFamily (2019/02 — 2019/11) Full Stack Developer, Full-time, Seoul Korea
+GeeksFamily (2019/02 ~ 2019/11) Full Stack Developer, Full-time, Seoul Korea
 - Built POS system, delivery sharing, food ordering app
 - Tech: Vue.js, Laravel, MySQL, Chart.js
 
-Bio & Pure (2016/05 — 2018/08) Full Stack Developer, Freelance, Qatar
+Bio & Pure (2016/05 ~ 2018/08) Full Stack Developer, Freelance, Qatar
 - Built cosmetics e-commerce from scratch
 - Tech: Laravel, Bootstrap 4, MySQL
 `
@@ -77,14 +77,14 @@ Languages: Arabic (native), English (fluent), Korean (conversational)
 const FUN_FACTS = [
   "I've visited 22+ countries and counting!",
   "I started my career in Egypt building construction company websites.",
-  "I met my first Korean friend during the Arab Spring in 2011 — that's what brought me to Korea.",
+  "I met my first Korean friend during the Arab Spring in 2011, that's what brought me to Korea.",
   "I have two bachelor's degrees: Accounting and Computer Science.",
   "I run a YouTube channel teaching web development in Arabic.",
   "I once designed a company uniform. Yes, the actual clothes.",
   "I can debug in three languages: Arabic, English, and Korean.",
   "My name YapoeY reads the same forwards and backwards... almost.",
   "I learned Korean at Kyung Hee University before switching to CS at Hanyang.",
-  "I've worked on medical platforms, gaming competitions, food delivery, and cosmetics — quite the range!",
+  "I've worked on medical platforms, gaming competitions, food delivery, and cosmetics. Quite the range!",
 ]
 
 export function useTerminal() {
@@ -153,9 +153,9 @@ STRICT OUTPUT RULES:
 - Do NOT draw boxes, frames, or borders (no ┌ ┐ └ ┘ │ ├ ┤ ─ characters)
 - Do NOT add a fake terminal prompt like "yapoey@" at the end
 - You can use → ★ ● ▸ and emoji
-- Include ALL the data provided — do not skip or summarize away details
+- Include ALL the data provided. Do not skip or summarize away details
 - Keep it between 8-20 lines
-- Be creative, conversational, and fun — like a person talking, not a template
+- Be creative, conversational, and fun. Like a person talking, not a template
 - For skills/technical data: use aligned columns with consistent spacing, one item per line
 - For lists: use ▸ as bullet, align values with spaces
 - Add a blank line between categories for readability`
@@ -324,14 +324,14 @@ Group by: Frontend, Backend, Database, Cloud/DevOps, Tools, Languages. Add a bla
 
   async function runProjects() {
     const projectSummary = PROJECTS.map(p =>
-      `[${p.id}] ${p.name} — ${p.desc} (${p.tech}) [${p.type}] @ ${p.company}${p.url !== '#' ? ' LIVE' : ''}`
+      `[${p.id}] ${p.name}: ${p.desc} (${p.tech}) [${p.type}] @ ${p.company}${p.url !== '#' ? ' LIVE' : ''}`
     ).join('\n')
 
     const ok = await aiCommand('projects', projectSummary,
       `Present these projects in a clean structured way. For each project show on separate lines:
   [id] Project Name
        Tech: ...
-       @ Company — short description
+       @ Company: short description
        🔗 LIVE (if it has a live URL)
 Group them by type (Professional, Creative/Personal). Show all projects.`
     )
@@ -360,7 +360,7 @@ Group them by type (Professional, Creative/Personal). Show all projects.`
     }
 
     const summary = filtered.map(p =>
-      `[${p.id}] ${p.name} — ${p.desc} (${p.tech}) @ ${p.company}`
+      `[${p.id}] ${p.name}: ${p.desc} (${p.tech}) @ ${p.company}`
     ).join('\n')
 
     const ok = await aiCommand(`projects ${filter}`, summary,
@@ -368,7 +368,7 @@ Group them by type (Professional, Creative/Personal). Show all projects.`
     )
     if (!ok) {
       filtered.forEach(p => {
-        addLine(`  [${p.id}] ${p.name} — ${p.tech}`, 'info')
+        addLine(`  [${p.id}] ${p.name}: ${p.tech}`, 'info')
       })
     }
     addLine('  Use `open [id]` to open a project.', 'suggest')
@@ -400,7 +400,7 @@ Group them by type (Professional, Creative/Personal). Show all projects.`
     }
 
     if (project.url === '#') {
-      addLine(`${project.name} — no live URL available (personal/offline project).`, 'info')
+      addLine(`${project.name}: no live URL available (personal/offline project).`, 'info')
       addLine('Switch to GUI mode to see screenshots: type `gui`', 'suggest')
       return
     }

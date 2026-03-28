@@ -23,15 +23,15 @@ export function useResumeData() {
       company: 'Sibel Health International',
       type: 'Full-time',
       location: 'Seoul, Korea & US',
-      duration: '2022/10 — Present',
+      duration: '2022/10 ~ Present',
       highlights: [
         'Lead frontend team across Korea and US offices',
-        'Built Discovery Hub — migrated entire codebase from React to Vue.js from scratch (256 commits)',
+        'Built Discovery Hub, migrated entire codebase from React to Vue.js from scratch (256 commits)',
         'Built Itchy Sense product for Japanese company Maruho within Discovery platform',
         'Created Sibel Health Design System using atomic design methodology, extracted as shared npm workspace package',
-        'Built Central Monitoring (Tucana) — real-time monitoring of 64 patients via WebSocket',
+        'Built Central Monitoring (Tucana), real-time monitoring of 64 patients via WebSocket',
         'Optimized frontend performance for real-time data streaming',
-        'Traveled to US (2024) to fix critical issues in Maternal project — helped company achieve FDA approval',
+        'Traveled to US (2024) to fix critical issues in Maternal project, helped company achieve FDA approval',
         'Created mock server for development and testing environments',
         'Implemented comprehensive E2E testing (Cypress) and unit testing (Jest) for both Discovery Hub and Tucana',
         'Set up GitHub Actions CI for automated test runs',
@@ -44,21 +44,21 @@ export function useResumeData() {
       company: 'YapoeY Bit',
       type: 'Studio',
       location: 'Seoul, Korea',
-      duration: '2022/10 — Present',
+      duration: '2022/10 ~ Present',
       highlights: [
         'Founded and leading a development studio delivering full-stack web and mobile products',
         'Leading cross-functional teams across frontend, backend, and mobile development',
         'Delivered 10+ products for clients in Korea, Egypt, Qatar, and Japan',
         'Key projects:',
-        '→ NooN Center (Egypt) — Full education platform with live/recorded courses, instructor portal, admin dashboard. Next.js 15, Express, MySQL. 576 commits',
-        '→ Russian Whale (Egypt) — Compound & guest management with maintenance request system, 7 user roles. Nuxt 3, Express, MySQL. 547 commits',
-        '→ bizNavi (Korea) — Enterprise mobile app with 33 feature modules (tasks, attendance, payments, patents). Flutter, BLoC. 816 commits',
-        '→ ChaiTalk (Own) — Social networking app with real-time messaging. Flutter, Express, Socket.IO, DynamoDB, Redis. 193 commits',
-        '→ Layun (Korea) — Product CMS with multilingual support (EN/ES/KO/RU). React, Express, PostgreSQL. 285 commits',
-        '→ Seoul Bird (Korea) — Bird watching platform with KakaoMap integration. Nuxt 4, AWS S3. 55 commits',
-        '→ Meya-Meya (Own) — AI-powered restaurant ordering with voice/text via Gemini AI. Nuxt 4 monorepo, NestJS. In development',
-        '→ cTask (Korea) — Organization management web app. Vue.js 3, PrimeVue. 128 commits',
-        '→ West East Forte (Korea) — B2B agency website. Nuxt 3, @nuxt/content. 27 commits',
+        '→ NooN Center (Egypt): Full education platform with live/recorded courses, instructor portal, admin dashboard. Next.js 15, Express, MySQL. 576 commits',
+        '→ Russian Whale (Egypt): Compound & guest management with maintenance request system, 7 user roles. Nuxt 3, Express, MySQL. 547 commits',
+        '→ bizNavi (Korea): Enterprise mobile app with 33 feature modules (tasks, attendance, payments, patents). Flutter, BLoC. 816 commits',
+        '→ ChaiTalk (Own): Social networking app with real-time messaging. Flutter, Express, Socket.IO, DynamoDB, Redis. 193 commits',
+        '→ Layun (Korea): Product CMS with multilingual support (EN/ES/KO/RU). React, Express, PostgreSQL. 285 commits',
+        '→ Seoul Bird (Korea): Bird watching platform with KakaoMap integration. Nuxt 4, AWS S3. 55 commits',
+        '→ Meya-Meya (Own): AI-powered restaurant ordering with voice/text via Gemini AI. Nuxt 4 monorepo, NestJS. In development',
+        '→ cTask (Korea): Organization management web app. Vue.js 3, PrimeVue. 128 commits',
+        '→ West East Forte (Korea): B2B agency website. Nuxt 3, @nuxt/content. 27 commits',
       ],
       tech: 'Vue.js, Nuxt.js, Next.js, React, Flutter, Node.js, Express, NestJS, MySQL, PostgreSQL, DynamoDB, Redis, AWS, Docker',
     },
@@ -67,7 +67,7 @@ export function useResumeData() {
       company: 'b2ggames',
       type: 'Full-time',
       location: 'Seoul, Korea',
-      duration: '2021/12 — 2022/10',
+      duration: '2021/12 ~ 2022/10',
       highlights: [
         'Built Asian Model Festival (AMF) event website from scratch',
         'Built Korean Baseball League fantasy gaming platform',
@@ -83,7 +83,7 @@ export function useResumeData() {
       company: 'Himedi',
       type: 'Full-time',
       location: 'Seoul, Korea',
-      duration: '2019/12 — 2021/11',
+      duration: '2019/12 ~ 2021/11',
       highlights: [
         'Built medical tourism platform connecting Korean hospitals with international patients from scratch',
         'Implemented 3 languages (English, Arabic, Russian) with full RTL support',
@@ -98,7 +98,7 @@ export function useResumeData() {
       company: 'GeeksFamily',
       type: 'Full-time',
       location: 'Seoul, Korea',
-      duration: '2019/02 — 2019/11',
+      duration: '2019/02 ~ 2019/11',
       highlights: [
         'Built POS system and delivery sharing platform',
         'Developed food ordering web app',
@@ -112,7 +112,7 @@ export function useResumeData() {
       company: 'Bio & Pure for Cosmetic',
       type: 'Freelance',
       location: 'Qatar',
-      duration: '2016/05 — 2018/08',
+      duration: '2016/05 ~ 2018/08',
       highlights: [
         'Designed and developed cosmetics e-commerce website from scratch',
         'Full frontend and backend implementation',
@@ -126,19 +126,19 @@ export function useResumeData() {
       degree: 'Computer Science & Engineering',
       school: 'Hanyang University',
       location: 'Seoul, Korea',
-      year: '2015 — 2019',
+      year: '2015 ~ 2019',
     },
     {
       degree: 'Korean Language Program',
       school: 'Kyung Hee University',
       location: 'Seoul, Korea',
-      year: '2014 — 2015',
+      year: '2014 ~ 2015',
     },
     {
       degree: 'Bachelor in Accounting',
       school: 'Ain Shams University',
       location: 'Cairo, Egypt',
-      year: '2009 — 2013',
+      year: '2009 ~ 2013',
     },
   ]
 
@@ -158,7 +158,7 @@ export function useResumeData() {
   const countries = [
     { name: 'South Korea', flag: '🇰🇷', note: 'Home since 2014' },
     { name: 'Egypt', flag: '🇪🇬', note: 'Home country' },
-    { name: 'USA', flag: '🇺🇸', note: 'Sibel Health — FDA project' },
+    { name: 'USA', flag: '🇺🇸', note: 'Sibel Health, FDA project' },
     { name: 'Japan', flag: '🇯🇵' },
     { name: 'China', flag: '🇨🇳' },
     { name: 'Taiwan', flag: '🇹🇼' },
@@ -181,7 +181,7 @@ export function useResumeData() {
   ]
 
   const projects = [
-    // YapoeY Bit — Client Projects
+    // YapoeY Bit Client Projects
     {
       slug: 'seoul-birds',
       name: 'Seoul Birds',
@@ -294,7 +294,7 @@ export function useResumeData() {
         '33 feature modules (tasks, attendance, payments, patents)',
         'Hot-patch deployment via Shorebird',
         'Firebase push notifications',
-        '816 commits — largest project',
+        '816 commits, largest project',
       ],
     },
     {

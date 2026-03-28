@@ -118,6 +118,7 @@ export default defineI18nLocale(async () => {
       gui: "رسومي",
     },
     ResumePage: {
+      title: "السيرة الذاتية",
       backToPortfolio: "العودة للأعمال →",
       printSavePdf: "طباعة / حفظ PDF",
       experience: "الخبرات",

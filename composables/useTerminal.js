@@ -413,7 +413,7 @@ Group them by type (Professional, Creative/Personal). Show all projects.`
   function runContact() {
     addLine('┌─── Contact ───────────────────────────────────┐', 'highlight')
     addBlank()
-    addLine('  📧  yapoey@gmail.com', 'info')
+    addLine('  📧  me@yapoey.com', 'info')
     addLine('  📍  Seoul, South Korea', 'info')
     addLine('  🌐  yapoey.com', 'info')
     addBlank()

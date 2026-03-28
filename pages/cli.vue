@@ -1,11 +1,11 @@
 <template>
-  <div class="min-h-screen flex flex-col font-mono text-sm" :style="terminalStyle">
+  <div class="h-dvh flex flex-col font-mono text-sm" :style="terminalStyle">
     <!-- Top bar -->
-    <div class="flex items-center justify-between px-4 py-2 border-b border-gray-800" :style="{ background: 'var(--cli-surface)' }">
-      <span class="text-gray-500 text-xs">yapoey.com — terminal v1.0</span>
+    <div class="flex items-center justify-between px-3 sm:px-4 py-2 border-b border-gray-800 flex-shrink-0" :style="{ background: 'var(--cli-surface)' }">
+      <span class="text-gray-500 text-xs">yapoey.com terminal v1.0</span>
       <div class="flex items-center gap-3">
         <NuxtLink to="/gui" class="text-xs text-gray-500 hover:text-primary transition-colors">
-          Switch to GUI
+          GUI
         </NuxtLink>
         <button
           class="text-gray-500 hover:text-red-400 transition-colors cursor-pointer"
@@ -17,11 +17,11 @@
     </div>
 
     <!-- Suggested commands (mobile) -->
-    <div class="flex flex-wrap gap-2 px-4 py-3 border-b border-gray-800 md:hidden" :style="{ background: 'var(--cli-surface)' }">
+    <div class="flex gap-2 px-3 py-2 border-b border-gray-800 md:hidden overflow-x-auto flex-shrink-0 scrollbar-hide" :style="{ background: 'var(--cli-surface)' }">
       <button
         v-for="cmd in suggestedCmds"
         :key="cmd"
-        class="px-3 py-1.5 text-xs rounded-lg bg-[#1a1a25] text-green-400 border border-gray-700 hover:border-green-500 transition-colors cursor-pointer"
+        class="px-3 py-1.5 text-xs rounded-lg bg-[#1a1a25] text-green-400 border border-gray-700 hover:border-green-500 transition-colors cursor-pointer whitespace-nowrap flex-shrink-0"
         @click="runSuggested(cmd)"
       >
         {{ cmd }}
@@ -31,14 +31,14 @@
     <!-- Terminal output -->
     <div
       ref="terminalOutput"
-      class="flex-1 overflow-y-auto px-4 py-4 space-y-0.5"
+      class="flex-1 overflow-y-auto px-3 sm:px-4 py-4 space-y-0.5 min-h-0"
       @click="focusInput"
     >
       <div
         v-for="line in output"
         :key="line.id"
-        class="whitespace-pre-wrap break-words leading-relaxed"
-        :class="lineClass(line.type)"
+        class="whitespace-pre-wrap break-words leading-relaxed overflow-x-auto"
+        :class="[lineClass(line.type), line.type === 'ascii' ? 'text-[10px] sm:text-sm leading-none' : '']"
       >{{ line.text }}</div>
 
       <!-- Loading indicator -->
@@ -50,35 +50,38 @@
     <!-- Command palette (slash menu) -->
     <div
       v-if="showCommandPalette"
-      class="mx-4 mb-1 rounded-xl bg-[#1a1a25] border border-gray-700 overflow-hidden max-h-64 overflow-y-auto"
+      class="mx-3 sm:mx-4 mb-1 rounded-xl bg-[#1a1a25] border border-gray-700 overflow-hidden max-h-48 sm:max-h-64 overflow-y-auto flex-shrink-0"
     >
       <div
         v-for="(cmd, i) in filteredCommands"
         :key="cmd.name"
-        class="flex items-center gap-3 px-4 py-2.5 cursor-pointer transition-colors"
+        class="flex items-center gap-3 px-3 sm:px-4 py-2 sm:py-2.5 cursor-pointer transition-colors"
         :class="i === selectedPaletteIndex ? 'bg-primary/20 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-gray-200'"
         @click="pickCommand(cmd.name)"
         @mouseenter="selectedPaletteIndex = i"
       >
-        <span class="text-lg w-6 text-center">{{ cmd.icon }}</span>
-        <div class="flex-1">
+        <span class="text-base sm:text-lg w-5 sm:w-6 text-center">{{ cmd.icon }}</span>
+        <div class="flex-1 min-w-0">
           <span class="text-sm font-medium" :class="i === selectedPaletteIndex ? 'text-white' : 'text-gray-300'">{{ cmd.name }}</span>
-          <span class="text-xs text-gray-500 ml-2">{{ cmd.desc }}</span>
+          <span class="text-xs text-gray-500 ml-2 hidden sm:inline">{{ cmd.desc }}</span>
         </div>
       </div>
     </div>
 
     <!-- Input -->
-    <div class="px-4 py-3 border-t border-gray-800" :style="{ background: 'var(--cli-surface)' }">
+    <div class="px-3 sm:px-4 py-2 sm:py-3 border-t border-gray-800 flex-shrink-0" :style="{ background: 'var(--cli-surface)' }">
       <div class="flex items-center gap-2">
-        <span class="flex-shrink-0" :style="{ color: 'var(--cli-green)' }">yapoey@terminal:~$</span>
+        <span class="flex-shrink-0 text-xs sm:text-sm" :style="{ color: 'var(--cli-green)' }">
+          <span class="hidden sm:inline">yapoey@terminal:~$</span>
+          <span class="sm:hidden">~$</span>
+        </span>
         <input
           ref="inputEl"
           v-model="currentInput"
           type="text"
-          class="flex-1 bg-transparent outline-none placeholder-gray-600"
+          class="flex-1 bg-transparent outline-none placeholder-gray-600 min-w-0 text-sm"
           :style="{ color: 'var(--cli-green)', caretColor: 'var(--cli-green)' }"
-          placeholder="Type a command or / for menu..."
+          placeholder="Type a command or /..."
           autocomplete="off"
           autocapitalize="off"
           spellcheck="false"
@@ -89,6 +92,17 @@
           @keydown.escape="closePalette"
           @keydown.ctrl.c.prevent="cancelInput"
         />
+        <!-- Send button (mobile) -->
+        <button
+          class="sm:hidden flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg transition-colors cursor-pointer"
+          :class="canSend ? 'bg-green-500/20 text-green-400' : 'bg-gray-800 text-gray-600'"
+          :disabled="!canSend"
+          @click="handleEnter"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+          </svg>
+        </button>
       </div>
     </div>
   </div>
@@ -104,7 +118,14 @@ const inputEl = ref(null)
 const terminalOutput = ref(null)
 const selectedPaletteIndex = ref(0)
 
+const isSending = ref(false)
 const suggestedCmds = ['whoami', 'projects', 'skills', 'fun', 'theme', 'clear']
+
+const canSend = computed(() => {
+  if (isSending.value) return false
+  if (showCommandPalette.value && filteredCommands.value.length > 0) return true
+  return currentInput.value.trim().length > 0
+})
 
 const themeColors = {
   dark:    { bg: '#0a0a0f', surface: '#13131a', text: '#e2e8f0', green: '#4ade80' },
@@ -193,6 +214,7 @@ function lineClass(type) {
 }
 
 function handleEnter() {
+  if (!canSend.value) return
   if (showCommandPalette.value && filteredCommands.value.length > 0) {
     pickCommand(filteredCommands.value[selectedPaletteIndex.value].name)
   } else {
@@ -239,9 +261,16 @@ function closePalette() {
 }
 
 async function submitCommand() {
+  if (isSending.value) return
   const cmd = currentInput.value
+  if (!cmd.trim()) return
   currentInput.value = ''
-  await execute(cmd)
+  isSending.value = true
+  try {
+    await execute(cmd)
+  } finally {
+    isSending.value = false
+  }
   scrollToBottom()
 }
 

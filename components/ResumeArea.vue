@@ -54,9 +54,9 @@
                   <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
               </div>
-              <div v-show="expandedJobs.has(i)" class="mt-4 pt-4 border-t border-[var(--color-border)] text-sm text-[var(--color-text-muted)] leading-relaxed">
+              <div v-show="expandedJobs.has(i)" class="mt-4 pt-4 border-t border-[var(--color-border)] text-sm leading-relaxed">
                 <ul class="space-y-1.5">
-                  <li v-for="(h, j) in job.highlights" :key="j" class="flex gap-2">
+                  <li v-for="(h, j) in job.highlights" :key="j" class="flex gap-2 text-[var(--color-text)] opacity-80">
                     <span v-if="h.startsWith('→')" class="text-primary flex-shrink-0">→</span>
                     <span v-else class="text-primary/60 flex-shrink-0">▸</span>
                     <span>{{ h.startsWith('→') ? h.slice(2) : h }}</span>

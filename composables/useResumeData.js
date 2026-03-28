@@ -9,7 +9,7 @@ export function useResumeData() {
     title: 'Software Engineer',
     location: 'Seoul, South Korea',
     from: 'Egypt',
-    email: 'yapoey@gmail.com',
+    email: 'me@yapoey.com',
     website: 'yapoey.com',
     github: 'github.com/yapoey',
     linkedin: 'linkedin.com/in/yapoey',

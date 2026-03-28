@@ -1,19 +1,27 @@
 <template>
   <div class="bg-[var(--color-bg)] min-h-screen">
     <!-- Header bar -->
-    <div class="sticky top-0 z-50 bg-[var(--color-bg)] bg-opacity-90 backdrop-blur-md border-b border-[var(--color-border)]">
-      <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-        <NuxtLink to="/gui" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">
-          {{ $t('ResumePage.backToPortfolio') }}
-        </NuxtLink>
-        <div class="flex items-center gap-3">
+    <div class="sticky top-0 z-50 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-border)]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
+        <!-- Back + Title -->
+        <div class="flex items-center gap-3 min-w-0">
+          <NuxtLink to="/gui" class="text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+          </NuxtLink>
+          <span class="text-sm font-semibold truncate">{{ $t('ResumePage.title') || 'Resume' }}</span>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
           <!-- Language switcher -->
           <div class="relative" ref="langDropdown">
             <button
-              class="px-3 py-1.5 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors cursor-pointer"
+              class="px-2 sm:px-3 py-1.5 text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors cursor-pointer"
               @click="showLangMenu = !showLangMenu"
             >
-              {{ currentLocaleName }}
+              {{ currentLocaleCode }}
             </button>
             <div
               v-show="showLangMenu"
@@ -32,14 +40,14 @@
 
           <!-- Dark mode toggle -->
           <button
-            class="p-2 rounded-lg hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
+            class="p-1.5 sm:p-2 rounded-lg hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
             aria-label="Toggle dark mode"
             @click="themeStore.toggleColorMode()"
           >
-            <svg v-if="themeStore.isDark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+            <svg v-if="themeStore.isDark" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
             </svg>
-            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
               <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
             </svg>
           </button>
@@ -48,25 +56,25 @@
           <NuxtLink
             to="/resume/print"
             target="_blank"
-            class="btn-primary text-sm !px-5 !py-2"
+            class="btn-primary text-xs sm:text-sm !px-3 sm:!px-5 !py-1.5 sm:!py-2"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clip-rule="evenodd" />
             </svg>
-            {{ $t('ResumePage.printSavePdf') }}
+            <span class="hidden sm:inline">{{ $t('ResumePage.printSavePdf') }}</span>
           </NuxtLink>
         </div>
       </div>
     </div>
 
     <!-- Resume Content -->
-    <div class="max-w-4xl mx-auto px-6 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
 
       <!-- Header -->
-      <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold">{{ bio.name }}</h1>
-        <p class="text-xl text-primary mt-2">{{ bio.title }}</p>
-        <p class="text-[var(--color-text-muted)] mt-2">{{ bio.location }} · Originally from {{ bio.from }}</p>
+      <div class="text-center mb-10 sm:mb-12">
+        <h1 class="text-3xl sm:text-4xl font-bold">{{ bio.name }}</h1>
+        <p class="text-lg sm:text-xl text-primary mt-2">{{ bio.title }}</p>
+        <p class="text-sm sm:text-base text-[var(--color-text-muted)] mt-2">{{ bio.location }} · Originally from {{ bio.from }}</p>
         <div class="flex flex-wrap justify-center gap-4 mt-4 text-sm text-[var(--color-text-muted)]">
           <span>{{ bio.email }}</span>
           <span>·</span>
@@ -220,6 +228,8 @@ const availableLocales = [
 const currentLocaleName = computed(() => {
   return availableLocales.find(l => l.code === locale.value)?.name || 'English'
 })
+
+const currentLocaleCode = computed(() => locale.value.toUpperCase())
 
 async function switchLocale(code) {
   await setLocale(code)

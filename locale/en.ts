@@ -33,9 +33,9 @@ export default defineI18nLocale(async () => {
       mainTitle: "Technical Expertise",
       subTitle: "Building scalable products with modern technologies.",
       firstTitle: "Frontend Development",
-      subFirst: "Vue.js, Nuxt.js, React, Next.js — building performant, accessible, and responsive web applications.",
+      subFirst: "Vue.js, Nuxt.js, React, Next.js. Building performant, accessible, and responsive web applications.",
       secTitle: "Backend Development",
-      subSec: "Node.js, Express, NestJS, Laravel — designing RESTful APIs, real-time systems, and microservices.",
+      subSec: "Node.js, Express, NestJS, Laravel. Designing RESTful APIs, real-time systems, and microservices.",
       thrTitle: "Mobile Development",
       subThr: "Flutter cross-platform apps with clean architecture and native performance.",
       fourthTitle: "Design Systems",
@@ -43,7 +43,7 @@ export default defineI18nLocale(async () => {
       fifthTitle: "Technical Leadership",
       subFifth: "Leading cross-functional teams, code reviews, CI/CD pipelines, and engineering best practices.",
       sixthTitle: "DevOps & Cloud",
-      subSixth: "AWS, Docker, GitHub Actions — infrastructure setup, deployment automation, and monitoring.",
+      subSixth: "AWS, Docker, GitHub Actions. Infrastructure setup, deployment automation, and monitoring.",
     },
     AboutArea: {
       aboutMe: "About Me",
@@ -118,6 +118,7 @@ export default defineI18nLocale(async () => {
       gui: "GUI",
     },
     ResumePage: {
+      title: "Resume",
       backToPortfolio: "← Back to Portfolio",
       printSavePdf: "Print / Save PDF",
       experience: "Experience",

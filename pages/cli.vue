@@ -50,11 +50,13 @@
     <!-- Command palette (slash menu) -->
     <div
       v-if="showCommandPalette"
+      ref="paletteEl"
       class="mx-3 sm:mx-4 mb-1 rounded-xl bg-[#1a1a25] border border-gray-700 overflow-hidden max-h-48 sm:max-h-64 overflow-y-auto flex-shrink-0"
     >
       <div
         v-for="(cmd, i) in filteredCommands"
         :key="cmd.name"
+        :ref="el => { if (i === selectedPaletteIndex) selectedItemEl = el }"
         class="flex items-center gap-3 px-3 sm:px-4 py-2 sm:py-2.5 cursor-pointer transition-colors"
         :class="i === selectedPaletteIndex ? 'bg-primary/20 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-gray-200'"
         @click="pickCommand(cmd.name)"
@@ -116,6 +118,8 @@ const { output, commandHistory, historyIndex, isLoading, currentTheme, init, exe
 const currentInput = ref('')
 const inputEl = ref(null)
 const terminalOutput = ref(null)
+const paletteEl = ref(null)
+const selectedItemEl = ref(null)
 const selectedPaletteIndex = ref(0)
 
 const isSending = ref(false)
@@ -195,6 +199,15 @@ const filteredCommands = computed(() => {
 // Reset selection when filter changes
 watch(filteredCommands, () => {
   selectedPaletteIndex.value = 0
+})
+
+// Scroll selected item into view in the palette
+watch(selectedPaletteIndex, () => {
+  nextTick(() => {
+    if (selectedItemEl.value) {
+      selectedItemEl.value.scrollIntoView({ block: 'nearest' })
+    }
+  })
 })
 
 function lineClass(type) {

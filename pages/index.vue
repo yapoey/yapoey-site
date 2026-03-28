@@ -30,6 +30,7 @@
           @click="chooseMode('cli')"
         >
           <span class="text-green-500/60 me-2">&gt;</span> {{ $t('IntroPage.cliMode') }}
+          <span class="block text-xs text-green-400/40 mt-0.5 font-normal">{{ $t('IntroPage.cliHint') }}</span>
           <div class="absolute inset-0 rounded-2xl bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
 
@@ -43,6 +44,7 @@
             <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
           </svg>
           {{ $t('IntroPage.guiMode') }}
+          <span class="block text-xs text-white/40 mt-0.5 font-normal">{{ $t('IntroPage.guiHint') }}</span>
           <div class="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
       </div>

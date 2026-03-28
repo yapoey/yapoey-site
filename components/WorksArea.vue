@@ -26,7 +26,7 @@
         <div
           v-for="(project, i) in filteredProjects"
           :key="project.slug"
-          class="group glass-hover overflow-hidden reveal cursor-pointer"
+          class="group glass-hover overflow-hidden cursor-pointer"
           @click="selectedProject = project"
         >
           <!-- Image or placeholder -->

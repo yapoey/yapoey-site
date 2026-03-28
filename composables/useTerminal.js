@@ -106,10 +106,15 @@ export function useTerminal() {
     addLine('', 'system')
   }
 
-  function init() {
-    addLines(ASCII_ART, 'ascii')
-    addBlank()
-    addLine('  Welcome to YapoeY Terminal v1.0', 'highlight')
+  function init(isMobile = false) {
+    if (isMobile) {
+      addBlank()
+      addLine('  ▸ YapoeY Terminal v1.0', 'highlight')
+    } else {
+      addLines(ASCII_ART, 'ascii')
+      addBlank()
+      addLine('  Welcome to YapoeY Terminal v1.0', 'highlight')
+    }
     addLine('  Type `help` or `/` to see available commands.', 'info')
     addBlank()
     addLine('  Suggested:', 'muted')
@@ -258,7 +263,12 @@ Group by: Frontend, Backend, Database, Cloud/DevOps, Tools, Languages. Add a bla
         break
       case 'clear':
         output.value = []
-        addLines(ASCII_ART, 'ascii')
+        if (typeof window !== 'undefined' && window.innerWidth >= 640) {
+          addLines(ASCII_ART, 'ascii')
+        } else {
+          addBlank()
+          addLine('  ▸ YapoeY Terminal v1.0', 'highlight')
+        }
         addBlank()
         return
       case 'gui':

@@ -37,8 +37,12 @@
       <div
         v-for="line in output"
         :key="line.id"
-        class="whitespace-pre-wrap break-words leading-relaxed overflow-x-auto"
-        :class="[lineClass(line.type), line.type === 'ascii' ? 'text-[10px] sm:text-sm leading-none' : '']"
+        :class="[
+          lineClass(line.type),
+          line.type === 'ascii'
+            ? 'whitespace-pre leading-none text-sm hidden sm:block'
+            : 'whitespace-pre-wrap break-words leading-relaxed'
+        ]"
       >{{ line.text }}</div>
 
       <!-- Loading indicator -->
@@ -337,7 +341,8 @@ function scrollToBottom() {
 }
 
 onMounted(() => {
-  init()
+  const isMobile = window.innerWidth < 640
+  init(isMobile)
   focusInput()
 })
 

@@ -181,6 +181,29 @@ export function useResumeData() {
   ]
 
   const projects = [
+    // YapoeY Bit — Client Projects
+    {
+      slug: 'seoul-birds',
+      name: 'Seoul Birds',
+      description: 'A bilingual birdwatching platform connecting Seoul\'s nature community through interactive maps, species guides, and shared stories. Built for Jobogi Studio with a full admin dashboard for content management.',
+      img: 'seoul-birds.png',
+      type: 'Full Stack',
+      tech: ['Nuxt.js 4', 'Vue 3', 'Tailwind CSS', 'KakaoMap API', 'i18n'],
+      company: 'YapoeY Bit',
+      role: 'Full-Stack Developer',
+      teamSize: 3,
+      url: 'https://seoulbirdrun.com/en',
+      highlights: [
+        'Interactive map covering birding hotspots across all Seoul districts',
+        'Detailed species profiles with seasonality, habitat, sound features, and image galleries',
+        'Community blog with categorized topics, comments, and user engagement',
+        'Bulk Excel import for efficient species and location data management',
+        'Bilingual platform (Korean/English) with Google and KakaoTalk social login',
+        'Personalized user profiles with saved birds, saved locations, and comment history',
+        'Admin dashboard with drag-and-drop homepage content curation',
+      ],
+    },
+
     // Sibel Health
     {
       slug: 'sibel-central-monitoring',

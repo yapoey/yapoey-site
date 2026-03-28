@@ -97,7 +97,7 @@ export default defineI18nLocale(async () => {
       vDob: "٢٠ أبريل ١٩٩٢",
       vAddress: "سيول، كوريا الجنوبية",
       email: "البريد:",
-      vEmail: "yapoey{'@'}gmail.com",
+      vEmail: "me{'@'}yapoey.com",
       hireme: "وظّفني",
       website: "yapoey.com",
       frontend: "واجهات أمامية",
@@ -119,7 +119,7 @@ export default defineI18nLocale(async () => {
     },
     ResumePage: {
       title: "السيرة الذاتية",
-      backToPortfolio: "العودة للأعمال →",
+      backToPortfolio: "العودة للأعمال",
       printSavePdf: "طباعة / حفظ PDF",
       experience: "الخبرات",
       education: "التعليم",

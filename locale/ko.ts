@@ -97,7 +97,7 @@ export default defineI18nLocale(async () => {
       vDob: "1992년 4월 20일",
       vAddress: "서울, 대한민국",
       email: "이메일:",
-      vEmail: "yapoey{'@'}gmail.com",
+      vEmail: "me{'@'}yapoey.com",
       hireme: "채용 문의",
       website: "yapoey.com",
       frontend: "Frontend",
@@ -119,7 +119,7 @@ export default defineI18nLocale(async () => {
     },
     ResumePage: {
       title: "이력서",
-      backToPortfolio: "← 포트폴리오로 돌아가기",
+      backToPortfolio: "포트폴리오로 돌아가기",
       printSavePdf: "인쇄 / PDF 저장",
       experience: "경력",
       education: "학력",

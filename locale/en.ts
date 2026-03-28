@@ -97,7 +97,7 @@ export default defineI18nLocale(async () => {
       vDob: "April 20, 1992",
       vAddress: "Seoul, South Korea",
       email: "Email:",
-      vEmail: "yapoey{'@'}gmail.com",
+      vEmail: "me{'@'}yapoey.com",
       hireme: "Hire me",
       website: "yapoey.com",
       frontend: "Frontend",
@@ -119,7 +119,7 @@ export default defineI18nLocale(async () => {
     },
     ResumePage: {
       title: "Resume",
-      backToPortfolio: "← Back to Portfolio",
+      backToPortfolio: "Back to Portfolio",
       printSavePdf: "Print / Save PDF",
       experience: "Experience",
       education: "Education",

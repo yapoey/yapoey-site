@@ -33,7 +33,7 @@
           <div class="relative overflow-hidden aspect-video">
             <img
               v-if="project.img"
-              :src="'/assets/img/works/portfolio/' + project.img"
+              :src="'/assets/img/projects/' + project.img"
               :alt="project.name"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />

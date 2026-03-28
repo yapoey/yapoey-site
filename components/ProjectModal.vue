@@ -26,7 +26,7 @@
         <div class="aspect-video w-full overflow-hidden sm:rounded-t-2xl rounded-t-2xl">
           <img
             v-if="project.img"
-            :src="'/assets/img/works/portfolio/' + project.img"
+            :src="'/assets/img/projects/' + project.img"
             :alt="project.name"
             class="w-full h-full object-cover"
           />

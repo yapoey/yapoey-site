@@ -47,8 +47,8 @@
         </button>
       </div>
 
-      <!-- Keyboard hint -->
-      <div class="mt-8 text-sm text-gray-600 font-mono opacity-0 transition-opacity duration-500 delay-700" :class="{ 'opacity-100': showHint }">
+      <!-- Keyboard hint (desktop only) -->
+      <div class="mt-8 text-sm text-gray-600 font-mono opacity-0 transition-opacity duration-500 delay-700 hidden sm:block" :class="{ 'sm:opacity-100': showHint }">
         {{ $t('IntroPage.keyboardHint') }} <kbd class="px-2 py-0.5 rounded bg-gray-800 text-gray-400 text-xs">1</kbd> {{ $t('IntroPage.cli') }}
         &nbsp;&middot;&nbsp;
         <kbd class="px-2 py-0.5 rounded bg-gray-800 text-gray-400 text-xs">2</kbd> {{ $t('IntroPage.gui') }}

@@ -6,7 +6,11 @@ export default defineNuxtConfig({
     host: '0.0.0.0',
   },
 
-  ssr: false, // TODO: enable SSR after switching to Node 20/22 LTS
+  ssr: false,
+
+  nitro: {
+    preset: 'aws-amplify',
+  },
 
   css: ['~/assets/scss/main.scss'],
 

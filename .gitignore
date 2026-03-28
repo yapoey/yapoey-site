@@ -21,6 +21,9 @@ dist/
 .DS_Store
 Thumbs.db
 
+# Design files
+*.pen
+
 # Logs
 *.log
 

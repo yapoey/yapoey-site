@@ -154,6 +154,7 @@ const langDropdown = ref(null)
 
 const navItems = [
   { href: '#body', label: 'Header.home' },
+  { href: '#services', label: 'Header.services' },
   { href: '#about', label: 'Header.about' },
   { href: '#resume', label: 'Header.resume' },
   { href: '#works', label: 'Header.works' },

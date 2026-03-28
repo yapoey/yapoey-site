@@ -89,8 +89,10 @@ const strings = computed(() => [
 const currentText = ref('')
 const currentIndex = ref(0)
 let timeout = null
+let stopped = false
 
 function typeText(text, charIndex, onDone) {
+  if (stopped) return
   if (charIndex <= text.length) {
     currentText.value = text.slice(0, charIndex)
     timeout = setTimeout(() => typeText(text, charIndex + 1, onDone), 80)
@@ -100,6 +102,7 @@ function typeText(text, charIndex, onDone) {
 }
 
 function deleteText(text, charIndex, onDone) {
+  if (stopped) return
   if (charIndex >= 0) {
     currentText.value = text.slice(0, charIndex)
     timeout = setTimeout(() => deleteText(text, charIndex - 1, onDone), 40)
@@ -127,5 +130,8 @@ function smoothScroll(href) {
 }
 
 onMounted(() => cycle())
-onUnmounted(() => clearTimeout(timeout))
+onUnmounted(() => {
+  stopped = true
+  clearTimeout(timeout)
+})
 </script>

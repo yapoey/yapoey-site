@@ -1,0 +1,20 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+        - mkdir -p .amplify-hosting/compute/default
+        - cp -r .output/server/* .amplify-hosting/compute/default/
+        - cp -r .output/public .amplify-hosting/static
+        - echo '{"version":1,"routes":[{"path":"/_nuxt/*","target":{"kind":"Static"}},{"path":"/assets/*","target":{"kind":"Static"}},{"path":"/css/*","target":{"kind":"Static"}},{"path":"/fonts/*","target":{"kind":"Static"}},{"path":"/*","target":{"kind":"Compute","src":"default"},"fallback":{"kind":"Compute","src":"default"}}],"computeResources":[{"name":"default","entrypoint":"index.mjs","runtime":"nodejs20.x"}],"framework":{"name":"nuxt","version":"3"}}' > .amplify-hosting/deploy-manifest.json
+  artifacts:
+    baseDirectory: .amplify-hosting
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*

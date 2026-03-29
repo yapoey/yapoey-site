@@ -143,7 +143,7 @@ export default defineI18nLocale(async () => {
       goHome: "الرئيسية",
     },
     doc: {
-      pdf: "/resume/print",
+      pdf: "/resume",
     },
   }
 })

@@ -253,7 +253,7 @@ export function useResumeData() {
       company: 'YapoeY Bit',
       role: 'Product Manager & Technical Lead',
       teamSize: 4,
-      url: null,
+      url: 'https://nooncenters.com/',
       highlights: [
         'Live + recorded courses with flexible pricing',
         'Instructor portal with earnings management',
@@ -271,7 +271,7 @@ export function useResumeData() {
       company: 'YapoeY Bit',
       role: 'Product Manager & Technical Lead',
       teamSize: 5,
-      url: null,
+      url: 'https://admin.therussianwhale.com/',
       highlights: [
         '7 user roles (Admin, Support Agent, Handyman, Guest, etc.)',
         'Real-time request tracking with messaging',
@@ -289,7 +289,7 @@ export function useResumeData() {
       company: 'YapoeY Bit',
       role: 'Product Manager & Technical Lead',
       teamSize: 3,
-      url: null,
+      url: 'https://www.biznavi.co.kr/intro/main',
       highlights: [
         '33 feature modules (tasks, attendance, payments, patents)',
         'Hot-patch deployment via Shorebird',
@@ -361,7 +361,7 @@ export function useResumeData() {
       company: 'YapoeY Bit',
       role: 'Product Manager & Technical Lead',
       teamSize: 2,
-      url: null,
+      url: 'https://ctaskpy.org/',
       highlights: [
         'Center introduction with org chart and history',
         'Business performance metrics dashboard',

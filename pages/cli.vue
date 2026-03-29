@@ -117,6 +117,16 @@
 <script setup>
 definePageMeta({ layout: false })
 
+useHead({ title: 'YapoeY | Terminal' })
+useSeoMeta({
+  description: 'Interactive terminal interface for YapoeY portfolio. Type commands to explore projects, skills, and experience.',
+  ogTitle: 'YapoeY | Terminal Mode',
+  ogDescription: 'Interactive terminal interface. Type commands to explore projects, skills, and experience.',
+  ogUrl: 'https://yapoey.com/cli',
+  twitterTitle: 'YapoeY | Terminal Mode',
+  twitterDescription: 'Interactive terminal interface. Type commands to explore projects, skills, and experience.',
+})
+
 const { output, commandHistory, historyIndex, isLoading, currentTheme, init, execute, getAutocomplete } = useTerminal()
 
 const currentInput = ref('')

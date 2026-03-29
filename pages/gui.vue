@@ -10,5 +10,13 @@
 </template>
 
 <script setup>
-// Nuxt 3 auto-imports all components — no manual imports needed
+useHead({ title: 'YapoeY | Portfolio' })
+useSeoMeta({
+  description: 'Mohamed Ibrahim (YapoeY) | Full Stack Developer portfolio. Projects in Vue.js, React, Node.js, Flutter, and more.',
+  ogTitle: 'YapoeY | Portfolio',
+  ogDescription: 'Full Stack Developer portfolio. Projects in Vue.js, React, Node.js, Flutter, and more.',
+  ogUrl: 'https://yapoey.com/gui',
+  twitterTitle: 'YapoeY | Portfolio',
+  twitterDescription: 'Full Stack Developer portfolio. Projects in Vue.js, React, Node.js, Flutter, and more.',
+})
 </script>

@@ -22,10 +22,7 @@
 
 <script setup>
 useHead({
-  title: 'YapoeY',
-  htmlAttrs: {
-    lang: 'en',
-  },
+  title: 'YapoeY | Portfolio',
 })
 
 const showScrollTop = ref(false)

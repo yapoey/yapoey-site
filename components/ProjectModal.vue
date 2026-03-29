@@ -63,7 +63,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.97 5.97 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.97 5.97 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
               </svg>
-              Team of {{ project.teamSize }}
+              {{ $t('ProjectModal.teamOf') }} {{ project.teamSize }}
             </div>
           </div>
 
@@ -74,7 +74,7 @@
 
           <!-- Tech stack -->
           <div class="mb-6">
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-3">Tech Stack</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-3">{{ $t('ProjectModal.techStack') }}</h3>
             <div class="flex flex-wrap gap-2">
               <span
                 v-for="t in project.tech"
@@ -86,7 +86,7 @@
 
           <!-- Highlights -->
           <div v-if="project.highlights && project.highlights.length" class="mb-6">
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-3">Key Highlights</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-3">{{ $t('ProjectModal.keyHighlights') }}</h3>
             <ul class="space-y-2">
               <li v-for="(h, i) in project.highlights" :key="i" class="flex gap-2 text-sm text-[var(--color-text-muted)]">
                 <span class="text-primary flex-shrink-0 mt-0.5">▸</span>
@@ -108,13 +108,13 @@
                 <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
                 <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
               </svg>
-              Visit Project
+              {{ $t('ProjectModal.visitProject') }}
             </a>
             <button
               class="btn-outline text-sm"
               @click="$emit('close')"
             >
-              Close
+              {{ $t('ProjectModal.close') }}
             </button>
           </div>
         </div>

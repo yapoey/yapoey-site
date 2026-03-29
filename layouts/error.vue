@@ -5,13 +5,13 @@
         {{ error?.statusCode || 500 }}
       </h1>
       <p class="text-xl text-[var(--color-text-muted)] mb-8">
-        {{ error?.statusCode === 404 ? 'Page not found' : 'An error occurred' }}
+        {{ error?.statusCode === 404 ? $t('ErrorPage.pageNotFound') : $t('ErrorPage.errorOccurred') }}
       </p>
       <NuxtLink
         to="/"
         class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
       >
-        Go Home
+        {{ $t('ErrorPage.goHome') }}
       </NuxtLink>
     </div>
   </div>

@@ -62,6 +62,18 @@
 <script setup>
 definePageMeta({ layout: false })
 
+const { t } = useI18n()
+
+useHead({ title: 'YapoeY | Mohamed Ibrahim' })
+useSeoMeta({
+  description: 'Mohamed Ibrahim (YapoeY) | Full Stack Developer & Product Engineer based in Seoul, Korea.',
+  ogTitle: 'YapoeY | Mohamed Ibrahim',
+  ogDescription: 'Full Stack Developer & Product Engineer based in Seoul, Korea. Vue.js, React, Node.js, TypeScript.',
+  ogUrl: 'https://yapoey.com',
+  twitterTitle: 'YapoeY | Mohamed Ibrahim',
+  twitterDescription: 'Full Stack Developer & Product Engineer based in Seoul, Korea.',
+})
+
 const router = useRouter()
 
 const displayName = ref('')

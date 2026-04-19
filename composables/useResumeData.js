@@ -14,8 +14,13 @@ export function useResumeData() {
     github: 'github.com/yapoey',
     linkedin: 'linkedin.com/in/yapoey',
     youtube: 'youtube.com/c/yapoey-tech',
-    summary: `Software Engineer with ${yearsExp}+ years of experience building web and mobile applications. Based in Seoul, South Korea, originally from Egypt. I lead frontend teams, architect design systems, and deliver full-stack products for clients in healthcare, education, e-commerce, and SaaS. Currently Senior Frontend Developer & Team Lead at Sibel Health International, and Product Manager & Technical Lead at YapoeY Bit.`,
+    summary: `Software Engineer with ${yearsExp}+ years of experience building web and mobile applications. South Korean national, originally from Egypt, based in Seoul. I lead frontend teams, architect design systems, and deliver full-stack products for clients in healthcare, education, e-commerce, and SaaS. Currently Senior Frontend Developer & Team Lead at Sibel Health International, and Product Manager & Technical Lead at YapoeY Bit.`,
   }
+
+  const nationalities = [
+    { country: 'South Korea', flag: '🇰🇷', status: 'Citizen' },
+    { country: 'Egypt', flag: '🇪🇬', status: 'Origin' },
+  ]
 
   const experience = [
     {
@@ -26,7 +31,7 @@ export function useResumeData() {
       duration: '2022/10 ~ Present',
       highlights: [
         'Lead frontend team across Korea and US offices',
-        'Built Discovery Hub, migrated entire codebase from React to Vue.js from scratch (256 commits)',
+        'Built Discovery Hub, migrated entire codebase from React to Vue.js from scratch',
         'Built Itchy Sense product for Japanese company Maruho within Discovery platform',
         'Created Sibel Health Design System using atomic design methodology, extracted as shared npm workspace package',
         'Built Central Monitoring (Tucana), real-time monitoring of 64 patients via WebSocket',
@@ -48,17 +53,19 @@ export function useResumeData() {
       highlights: [
         'Founded and leading a development studio delivering full-stack web and mobile products',
         'Leading cross-functional teams across frontend, backend, and mobile development',
-        'Delivered 10+ products for clients in Korea, Egypt, Qatar, and Japan',
+        'Delivered 12+ products for clients in Korea, Egypt, Qatar, and Japan',
         'Key projects:',
-        '→ NooN Center (Egypt): Full education platform with live/recorded courses, instructor portal, admin dashboard. Next.js 15, Express, MySQL. 576 commits',
-        '→ Russian Whale (Egypt): Compound & guest management with maintenance request system, 7 user roles. Nuxt 3, Express, MySQL. 547 commits',
-        '→ bizNavi (Korea): Enterprise mobile app with 33 feature modules (tasks, attendance, payments, patents). Flutter, BLoC. 816 commits',
-        '→ ChaiTalk (Own): Social networking app with real-time messaging. Flutter, Express, Socket.IO, DynamoDB, Redis. 193 commits',
-        '→ Layun (Korea): Product CMS with multilingual support (EN/ES/KO/RU). React, Express, PostgreSQL. 285 commits',
-        '→ Seoul Bird (Korea): Bird watching platform with KakaoMap integration. Nuxt 4, AWS S3. 55 commits',
+        '→ NooN Center (Egypt): Full education platform with live/recorded courses, instructor portal, admin dashboard. Next.js 15, Express, MySQL',
+        '→ Russian Whale (Egypt): Compound & guest management with maintenance request system, 7 user roles. Nuxt 3, Express, MySQL',
+        '→ bizNavi (Korea): Enterprise mobile app with 33 feature modules (tasks, attendance, payments, patents). Flutter, BLoC',
+        '→ ChaiTalk (Own): Social networking app with real-time messaging. Flutter, Express, Socket.IO, DynamoDB, Redis',
+        '→ Layun (Korea): Product CMS with multilingual support (EN/ES/KO/RU). React, Express, PostgreSQL',
+        '→ Seoul Bird (Korea): Bird watching platform with KakaoMap integration. Nuxt 4, AWS S3',
         '→ Meya-Meya (Own): AI-powered restaurant ordering with voice/text via Gemini AI. Nuxt 4 monorepo, NestJS. In development',
-        '→ cTask (Korea): Organization management web app. Vue.js 3, PrimeVue. 128 commits',
-        '→ West East Forte (Korea): B2B agency website. Nuxt 3, @nuxt/content. 27 commits',
+        '→ cTask (Korea): Organization management web app. Vue.js 3, PrimeVue',
+        '→ West East Forte (Korea): B2B agency website. Nuxt 3, @nuxt/content',
+        '→ YapoeY Finance (Own): Personal finance tracker with multi-currency, AI categorization, and Tauri desktop app. Nuxt 4, Supabase, Gemini AI',
+        '→ YapoeY MD (Own): Markdown platform with GitHub sync, AI comment processing, and mermaid diagrams. Nuxt 3, SQLite, Claude AI, Tauri',
       ],
       tech: 'Vue.js, Nuxt.js, Next.js, React, Flutter, Node.js, Express, NestJS, MySQL, PostgreSQL, DynamoDB, Redis, AWS, Docker',
     },
@@ -85,7 +92,8 @@ export function useResumeData() {
       location: 'Seoul, Korea',
       duration: '2019/12 ~ 2021/11',
       highlights: [
-        'Built medical tourism platform connecting Korean hospitals with international patients from scratch',
+        'Built medical tourism platform for Arabic-speaking patients to book top Korean hospitals, with integrated accommodation and transportation services',
+        'Worked hand-in-hand with backend engineers and UI/UX designers, including top developers from KakaoTalk',
         'Implemented 3 languages (English, Arabic, Russian) with full RTL support',
         'Translated UI/UX wireframes to production code',
         'Enhanced application performance and scalability',
@@ -236,7 +244,7 @@ export function useResumeData() {
       teamSize: null,
       url: null,
       highlights: [
-        'Migrated entire React codebase to Vue.js from scratch (256 commits)',
+        'Migrated entire React codebase to Vue.js from scratch',
         'Built Itchy Sense product for Japanese company Maruho',
         'Created mock server for development/testing',
         'Set up GitHub Actions CI for automated tests',
@@ -258,7 +266,7 @@ export function useResumeData() {
         'Live + recorded courses with flexible pricing',
         'Instructor portal with earnings management',
         'Admin dashboard with finance tracking',
-        '576 commits across 3 repos (frontend, admin, backend)',
+        'Built across 3 repos (frontend, admin, backend)',
       ],
     },
     {
@@ -276,7 +284,7 @@ export function useResumeData() {
         '7 user roles (Admin, Support Agent, Handyman, Guest, etc.)',
         'Real-time request tracking with messaging',
         'Guest portal with passport-based login',
-        '547 commits across 3 repos',
+        'Built across 3 repos (frontend, admin, backend)',
       ],
     },
     {
@@ -294,7 +302,7 @@ export function useResumeData() {
         '33 feature modules (tasks, attendance, payments, patents)',
         'Hot-patch deployment via Shorebird',
         'Firebase push notifications',
-        '816 commits, largest project',
+        'Largest project in the studio',
       ],
     },
     {
@@ -312,7 +320,7 @@ export function useResumeData() {
         'Real-time messaging via Socket.IO',
         'Timeline with posts, polls, audio, GIFs',
         'Triple database: DynamoDB + MySQL + Redis',
-        '193 commits (frontend + backend)',
+        'Built across frontend and backend repos',
       ],
     },
     {
@@ -330,7 +338,7 @@ export function useResumeData() {
         'Multilingual CMS (EN, ES, KO, RU)',
         'Rich text editor with image upload to S3',
         'CI/CD via GitHub Actions + Vercel',
-        '285 commits across 2 repos',
+        'Built across 2 repos (frontend, backend)',
       ],
     },
     {
@@ -366,7 +374,44 @@ export function useResumeData() {
         'Center introduction with org chart and history',
         'Business performance metrics dashboard',
         'Multi-language support with i18n',
-        '128 commits',
+      ],
+    },
+    {
+      slug: 'yapoey-finance',
+      name: 'YapoeY Finance',
+      description: 'Personal finance tracker replacing a 10-year Excel system. Multi-currency support (160+), per-card billing cycles, AI-powered categorization via Gemini, and a Tauri desktop app.',
+      img: 'yapoey-finance.png',
+      type: 'Full Stack',
+      tech: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Nuxt UI v4', 'Supabase', 'Prisma', 'Gemini AI', 'Chart.js', 'Tauri'],
+      company: 'YapoeY Bit',
+      role: 'Founder & Lead Developer',
+      teamSize: 1,
+      url: 'https://fintech.yapoeybit.com/',
+      highlights: [
+        'Multi-currency tracking with automatic exchange rate conversion (160+ currencies)',
+        'Per-card billing cycles with configurable cutoff and due dates',
+        'AI-powered transaction categorization and chat via Google Gemini',
+        'Interactive reports and analytics with Chart.js',
+        'Cross-platform: web + Tauri desktop app',
+      ],
+    },
+    {
+      slug: 'yapoey-md',
+      name: 'YapoeY MD',
+      description: 'Markdown file management platform with GitHub sync, AI-assisted comment processing via Claude, collaborative inline comments, and mermaid diagram rendering. Web + desktop.',
+      img: 'yapoey-md.png',
+      type: 'Full Stack',
+      tech: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Tailwind', 'Pinia', 'SQLite', 'Drizzle ORM', 'Claude AI', 'GitHub API', 'Tauri'],
+      company: 'YapoeY Bit',
+      role: 'Founder & Lead Developer',
+      teamSize: 1,
+      url: 'https://md.yapoeybit.com/',
+      highlights: [
+        'GitHub OAuth + two-way sync (pull/push commits from the app)',
+        'Inline comments with line/range anchors and public share links',
+        'AI comment processing via Claude for automated edits',
+        'Mermaid diagrams, WYSIWYG editing, and markdown preview/raw/split views',
+        'Monorepo (pnpm) with web app + Tauri desktop shell',
       ],
     },
     {
@@ -448,7 +493,7 @@ export function useResumeData() {
 
   const stats = {
     yearsExp,
-    projects: '15+',
+    projects: '17+',
     countriesVisited: '22+',
     languages: 3,
     companies: 6,
@@ -456,5 +501,5 @@ export function useResumeData() {
     commits: '6000+',
   }
 
-  return { bio, experience, education, skills, projects, countries, stats }
+  return { bio, experience, education, skills, projects, countries, nationalities, stats }
 }

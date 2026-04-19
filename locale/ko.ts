@@ -48,7 +48,7 @@ export default defineI18nLocale(async () => {
     AboutArea: {
       aboutMe: "자기소개",
       getToKnowMe: "저에 대해 알아보세요",
-      summery: "7년 이상의 경력을 가진 소프트웨어 엔지니어로 웹 및 모바일 애플리케이션을 개발하고 있습니다. 이집트 출신으로 현재 서울에 거주하고 있습니다. Frontend 팀을 리드하고, 디자인 시스템을 설계하며, 헬스케어, 교육, 이커머스, SaaS 분야의 Full Stack 제품을 제공합니다. 현재 Sibel Health International에서 시니어 Frontend 개발자 겸 팀 리드로, YapoeY Bit에서 프로덕트 매니저 겸 기술 리드로 활동하고 있습니다.",
+      summery: "7년 이상의 경력을 가진 소프트웨어 엔지니어로 웹 및 모바일 애플리케이션을 개발하고 있습니다. 대한민국 국적이며, 이집트 출신으로 현재 서울에 거주하고 있습니다. Frontend 팀을 리드하고, 디자인 시스템을 설계하며, 헬스케어, 교육, 이커머스, SaaS 분야의 Full Stack 제품을 제공합니다. 현재 Sibel Health International에서 시니어 Frontend 개발자 겸 팀 리드로, YapoeY Bit에서 프로덕트 매니저 겸 기술 리드로 활동하고 있습니다.",
       name: "이름:",
       dob: "생년월일:",
       address: "주소:",
@@ -63,6 +63,7 @@ export default defineI18nLocale(async () => {
       Education: "학력",
       Experience: "경력",
       Skills: "기술 역량",
+      Nationality: "국적",
       frontend: "프론트엔드",
       backend: "백엔드",
       database: "데이터베이스",

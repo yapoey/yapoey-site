@@ -108,6 +108,22 @@
           </div>
         </div>
       </div>
+
+      <div v-show="activeTab === 'nationality'" class="max-w-3xl mx-auto">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div
+            v-for="n in nationalities"
+            :key="n.country"
+            class="glass p-6 flex items-center gap-5 reveal"
+          >
+            <span class="text-5xl">{{ n.flag }}</span>
+            <div>
+              <h4 class="text-lg font-semibold">{{ n.country }}</h4>
+              <p class="text-sm text-[var(--color-text-muted)] mt-1">{{ n.status }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -115,7 +131,7 @@
 <script setup>
 useReveal()
 
-const { education: educations, experience: experiences, skills } = useResumeData()
+const { education: educations, experience: experiences, skills, nationalities } = useResumeData()
 
 const { t } = useI18n()
 
@@ -127,13 +143,14 @@ const skillCategories = computed(() => [
   { name: 'tools', label: t('ResumeArea.toolsTesting'), items: skills.tools },
 ])
 
-const activeTab = ref('education')
+const activeTab = ref('experience')
 const expandedJobs = ref(new Set())
 
 const tabs = [
-  { key: 'education', label: 'ResumeArea.Education' },
   { key: 'experience', label: 'ResumeArea.Experience' },
+  { key: 'education', label: 'ResumeArea.Education' },
   { key: 'skills', label: 'ResumeArea.Skills' },
+  { key: 'nationality', label: 'ResumeArea.Nationality' },
 ]
 
 function toggleExpand(i) {

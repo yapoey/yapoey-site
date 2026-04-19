@@ -48,7 +48,7 @@ export default defineI18nLocale(async () => {
     AboutArea: {
       aboutMe: "About Me",
       getToKnowMe: "Get to know me",
-      summery: "Software Engineer with 7+ years of experience building web and mobile applications. Based in Seoul, South Korea, originally from Egypt. I lead frontend teams, architect design systems, and deliver full-stack products for clients in healthcare, education, e-commerce, and SaaS. Currently a Senior Frontend Developer & Team Lead at Sibel Health International, and Product Manager & Technical Lead at YapoeY Bit.",
+      summery: "Software Engineer with 7+ years of experience building web and mobile applications. South Korean national, originally from Egypt, based in Seoul. I lead frontend teams, architect design systems, and deliver full-stack products for clients in healthcare, education, e-commerce, and SaaS. Currently a Senior Frontend Developer & Team Lead at Sibel Health International, and Product Manager & Technical Lead at YapoeY Bit.",
       name: "Name:",
       dob: "Date of birth:",
       address: "Address:",
@@ -63,6 +63,7 @@ export default defineI18nLocale(async () => {
       Education: "Education",
       Experience: "Experience",
       Skills: "Skills",
+      Nationality: "Nationality",
       frontend: "Frontend",
       backend: "Backend",
       database: "Database",

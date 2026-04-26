@@ -15,7 +15,7 @@
           :class="activeFilter === filter.value
             ? 'bg-primary text-white shadow-lg shadow-primary/25'
             : 'bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-text)]'"
-          @click="activeFilter = filter.value"
+          @click="setFilter(filter.value)"
         >
           {{ filter.label }}
         </button>
@@ -27,7 +27,7 @@
           v-for="(project, i) in filteredProjects"
           :key="project.slug"
           class="group glass-hover overflow-hidden cursor-pointer"
-          @click="selectedProject = project"
+          @click="openProject(project)"
         >
           <!-- Image or placeholder -->
           <div class="relative overflow-hidden aspect-video">
@@ -83,11 +83,24 @@
 <script setup>
 const { t } = useI18n()
 useReveal()
+const analytics = useAnalytics()
 
 const { projects } = useResumeData()
 
 const activeFilter = ref('all')
 const selectedProject = ref(null)
+
+function setFilter(value) {
+  if (activeFilter.value !== value) {
+    analytics.worksFilter(value)
+  }
+  activeFilter.value = value
+}
+
+function openProject(project) {
+  selectedProject.value = project
+  analytics.projectView(project.name, project.type, project.company)
+}
 
 const filters = computed(() => [
   { label: t('Filters.all'), value: 'all' },

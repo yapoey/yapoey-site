@@ -3,7 +3,7 @@
     <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 py-12">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <!-- Logo -->
-        <NuxtLink to="/" class="flex-shrink-0">
+        <NuxtLink to="/" class="flex-shrink-0" @click="analytics.navClick('logo', 'footer')">
           <img
             v-if="themeStore.isDark"
             src="/assets/img/logo.white.png"
@@ -29,6 +29,7 @@
             class="w-10 h-10 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-muted)] hover:text-primary hover:border-primary hover:shadow-lg hover:shadow-primary/10 transition-all duration-200"
             :aria-label="link.name"
             v-html="link.svg"
+            @click="analytics.socialClick(link.name.toLowerCase(), 'footer')"
           />
         </div>
 
@@ -43,6 +44,7 @@
 
 <script setup>
 const themeStore = useThemeStore()
+const analytics = useAnalytics()
 
 const socialLinks = [
   {

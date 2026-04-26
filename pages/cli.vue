@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between px-3 sm:px-4 py-2 border-b border-gray-800 flex-shrink-0" :style="{ background: 'var(--cli-surface)' }">
       <span class="text-gray-500 text-xs">yapoey.com terminal v1.0</span>
       <div class="flex items-center gap-3">
-        <NuxtLink to="/gui" class="text-xs text-gray-500 hover:text-primary transition-colors">
+        <NuxtLink to="/gui" class="text-xs text-gray-500 hover:text-primary transition-colors" @click="analytics.ctaClick('switch_to_gui', 'cli_topbar')">
           GUI
         </NuxtLink>
         <button
@@ -128,6 +128,7 @@ useSeoMeta({
 })
 
 const { output, commandHistory, historyIndex, isLoading, currentTheme, init, execute, getAutocomplete } = useTerminal()
+const analytics = useAnalytics()
 
 const currentInput = ref('')
 const inputEl = ref(null)
@@ -275,6 +276,7 @@ function handleTab() {
 
 function pickCommand(name) {
   currentInput.value = name
+  pendingSource = 'palette'
   nextTick(() => {
     inputEl.value?.focus()
     submitCommand()
@@ -291,6 +293,10 @@ async function submitCommand() {
   if (isSending.value) return
   const cmd = currentInput.value
   if (!cmd.trim()) return
+  const source = pendingSource || 'typed'
+  pendingSource = null
+  // Track only the first token so 'ask why korea' stays one event named 'ask'
+  analytics.cliCommand(cmd.trim().split(/\s+/)[0].toLowerCase(), source)
   currentInput.value = ''
   isSending.value = true
   try {
@@ -333,14 +339,22 @@ function focusInput() {
 }
 
 function exitTerminal() {
+  analytics.ctaClick('exit_terminal', 'cli_topbar')
   localStorage.removeItem('yapoey_mode')
   navigateTo('/')
 }
 
 function runSuggested(cmd) {
   currentInput.value = cmd
+  pendingSource = 'suggested'
   submitCommand()
 }
+
+let pendingSource = null
+
+watch(currentTheme, (val, prev) => {
+  if (prev !== undefined && val !== prev) analytics.cliTheme(val)
+})
 
 function scrollToBottom() {
   nextTick(() => {

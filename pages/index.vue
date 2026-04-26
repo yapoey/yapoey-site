@@ -27,7 +27,7 @@
         <button
           class="group relative w-56 px-8 py-4 rounded-2xl bg-[#1a1a25] border border-green-500/30 text-green-400 font-mono text-lg
                  hover:border-green-400 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 cursor-pointer"
-          @click="chooseMode('cli')"
+          @click="chooseMode('cli', 'click')"
         >
           <span class="text-green-500/60 me-2">&gt;</span> {{ $t('IntroPage.cliMode') }}
           <span class="block text-xs text-green-400/40 mt-0.5 font-normal">{{ $t('IntroPage.cliHint') }}</span>
@@ -38,7 +38,7 @@
         <button
           class="group relative w-56 px-8 py-4 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/30 text-white text-lg font-medium
                  hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer"
-          @click="chooseMode('gui')"
+          @click="chooseMode('gui', 'click')"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline me-2 -mt-0.5" viewBox="0 0 20 20" fill="currentColor">
             <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
@@ -75,6 +75,7 @@ useSeoMeta({
 })
 
 const router = useRouter()
+const analytics = useAnalytics()
 
 const displayName = ref('')
 const showSubtitle = ref(false)
@@ -83,7 +84,8 @@ const showHint = ref(false)
 
 const fullName = 'YapoeY'
 
-function chooseMode(mode) {
+function chooseMode(mode, method = 'click') {
+  analytics.modeSelect(mode, method)
   localStorage.setItem('yapoey_mode', mode)
   router.push(mode === 'cli' ? '/cli' : '/gui')
 }
@@ -103,8 +105,8 @@ function typewriterName() {
 }
 
 function handleKeydown(e) {
-  if (e.key === '1') chooseMode('cli')
-  if (e.key === '2') chooseMode('gui')
+  if (e.key === '1') chooseMode('cli', 'keyboard')
+  if (e.key === '2') chooseMode('gui', 'keyboard')
 }
 
 onMounted(() => {

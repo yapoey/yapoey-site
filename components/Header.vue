@@ -6,7 +6,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
-        <NuxtLink to="/" class="flex-shrink-0">
+        <NuxtLink to="/" class="flex-shrink-0" @click="analytics.navClick('logo', 'header')">
           <img
             v-if="themeStore.isDark"
             src="/assets/img/logo.white.png"
@@ -28,7 +28,7 @@
             :key="item.href"
             :href="item.href"
             class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
-            @click.prevent="smoothScroll(item.href)"
+            @click.prevent="navTo(item.href, 'header')"
           >
             {{ $t(item.label) }}
           </a>
@@ -36,6 +36,7 @@
           <NuxtLink
             to="/cli"
             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-green-400 bg-green-500/10 border border-green-500/20 hover:border-green-400 hover:bg-green-500/15 transition-all"
+            @click="analytics.ctaClick('cli_mode', 'header')"
           >
             <span class="text-green-500">&gt;_</span> CLI
           </NuxtLink>
@@ -56,7 +57,7 @@
                 v-for="loc in availableLocales"
                 :key="loc.code"
                 class="block w-full text-left px-4 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
-                @click="switchLocale(loc.code)"
+                @click="switchLocale(loc.code, 'header')"
               >
                 {{ loc.name }}
               </button>
@@ -67,7 +68,7 @@
           <button
             class="p-2 rounded-lg hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
             aria-label="Toggle dark mode"
-            @click="themeStore.toggleColorMode()"
+            @click="toggleTheme()"
           >
             <svg v-if="themeStore.isDark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
@@ -83,7 +84,7 @@
           <button
             class="p-2 rounded-lg hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
             aria-label="Toggle dark mode"
-            @click="themeStore.toggleColorMode()"
+            @click="toggleTheme()"
           >
             <svg v-if="themeStore.isDark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
@@ -95,7 +96,7 @@
           <button
             class="p-2 rounded-lg hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
             aria-label="Toggle menu"
-            @click="mobileMenuOpen = !mobileMenuOpen"
+            @click="toggleMobileMenu()"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path v-if="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -117,14 +118,14 @@
           :key="item.href"
           :href="item.href"
           class="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors"
-          @click.prevent="smoothScroll(item.href); mobileMenuOpen = false"
+          @click.prevent="navTo(item.href, 'mobile'); mobileMenuOpen = false"
         >
           {{ $t(item.label) }}
         </a>
         <NuxtLink
           to="/cli"
           class="block px-3 py-2 rounded-lg text-sm font-mono font-medium text-green-400 hover:bg-green-500/10 transition-colors"
-          @click="mobileMenuOpen = false"
+          @click="analytics.ctaClick('cli_mode', 'mobile'); mobileMenuOpen = false"
         >
           &gt;_ {{ $t('Header.cli') }}
         </NuxtLink>
@@ -133,7 +134,7 @@
             v-for="loc in availableLocales"
             :key="loc.code"
             class="block w-full text-left px-3 py-2 rounded-lg text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
-            @click="switchLocale(loc.code); mobileMenuOpen = false"
+            @click="switchLocale(loc.code, 'mobile'); mobileMenuOpen = false"
           >
             {{ loc.name }}
           </button>
@@ -146,6 +147,7 @@
 <script setup>
 const { locale, setLocale } = useI18n()
 const themeStore = useThemeStore()
+const analytics = useAnalytics()
 
 const isSticky = ref(false)
 const mobileMenuOpen = ref(false)
@@ -176,9 +178,27 @@ function smoothScroll(href) {
   }
 }
 
-async function switchLocale(code) {
+function navTo(href, location) {
+  analytics.navClick(href.replace('#', '') || 'home', location)
+  smoothScroll(href)
+}
+
+async function switchLocale(code, location = 'header') {
+  if (code !== locale.value) {
+    analytics.languageChange(code, locale.value, location)
+  }
   await setLocale(code)
   showLangMenu.value = false
+}
+
+function toggleTheme() {
+  themeStore.toggleColorMode()
+  analytics.themeChange(themeStore.isDark ? 'dark' : 'light')
+}
+
+function toggleMobileMenu() {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+  analytics.mobileMenu(mobileMenuOpen.value ? 'open' : 'close')
 }
 
 function handleScroll() {

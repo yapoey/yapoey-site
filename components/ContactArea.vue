@@ -63,12 +63,18 @@
 
 <script setup>
 useReveal()
+const analytics = useAnalytics()
 
 const form = reactive({ name: '', email: '', subject: '', message: '' })
 const showConfirm = ref(false)
 const isValid = computed(() => form.name && form.email && form.message)
 
 async function sendMessage() {
+  if (!isValid.value) {
+    analytics.contactSubmit('validation_failed')
+    return
+  }
+  analytics.contactSubmit('success')
   showConfirm.value = true
   form.name = form.email = form.subject = form.message = ''
   setTimeout(() => { showConfirm.value = false }, 1500)

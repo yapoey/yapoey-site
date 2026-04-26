@@ -14,7 +14,7 @@
           :class="activeTab === tab.key
             ? 'bg-primary text-white shadow-lg shadow-primary/25'
             : 'bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-text)]'"
-          @click="activeTab = tab.key"
+          @click="setTab(tab.key)"
         >
           {{ $t(tab.label) }}
         </button>
@@ -130,6 +130,7 @@
 
 <script setup>
 useReveal()
+const analytics = useAnalytics()
 
 const { education: educations, experience: experiences, skills, nationalities } = useResumeData()
 
@@ -155,9 +156,21 @@ const tabs = [
 
 function toggleExpand(i) {
   const s = new Set(expandedJobs.value)
-  if (s.has(i)) s.delete(i)
+  const wasExpanded = s.has(i)
+  if (wasExpanded) s.delete(i)
   else s.add(i)
   expandedJobs.value = s
+  if (!wasExpanded) {
+    const job = experiences[i]
+    if (job) analytics.experienceExpand(job.title, job.company)
+  }
+}
+
+function setTab(key) {
+  if (activeTab.value !== key) {
+    analytics.resumeTab(key)
+  }
+  activeTab.value = key
 }
 
 </script>

@@ -64,9 +64,9 @@ export default defineNuxtConfig({
     sources: ['/api/__sitemap__/urls'],
   },
 
-  // Google Analytics (GA4)
+  // Google Analytics (GA4) — measurement ID is public (ships in every page)
   gtag: {
-    id: process.env.GA_MEASUREMENT_ID || 'G-XXXXXXXXXX',
+    id: process.env.GA_MEASUREMENT_ID || 'G-V72EEBF35V',
     enabled: process.env.NODE_ENV === 'production',
   },
 
